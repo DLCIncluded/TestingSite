@@ -21,6 +21,11 @@ include_once("accountManager.php");
 		console.log("Done")
 	  });
 	});
+	
+	function swap(){
+		$('.login-form-wrap').slideToggle(400);
+		$('.register-form-wrap').slideToggle(400);
+	}
 </script>
 
 </head>
@@ -33,7 +38,17 @@ include_once("accountManager.php");
 	<div class="login-form-container">
 		<div id="login-form-dropdown" class="login-form-dropdown">
 			<?PHP
-			include("login.php");
+				include("login.php");
+			?>
+		</div>
+	</div>
+</div>
+
+<div class="register-form-wrap">
+	<div class="register-form-container">
+		<div id="register-form-dropdown" class="register-form-dropdown">
+			<?PHP
+				include("register.php");
 			?>
 		</div>
 	</div>
