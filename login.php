@@ -18,7 +18,7 @@ if(isset($_SESSION['username']) && !isset($_POST['username'])){
 		<input type="text" name="username" id="username" placeholder="Username" required/>
 		<input type="password" name="pass" id="pass" placeholder="Password" required/>
 		<button type="submit" id="login-submit">Submit</button> <br>
-		<p>Don't Have an Account? <a onClick="swap()">Register</a></p>
+		<p>Don't Have an Account? <a onClick="swap1()">Register</a></p>
 	</form>
 	
 	<!--<form method="POST" action="login.php">

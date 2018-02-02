@@ -22,9 +22,13 @@ include_once("accountManager.php");
 	  });
 	});
 	
-	function swap(){
+	function swap1(){
 		$('.login-form-wrap').slideToggle(400);
+		$('.register-form-wrap').delay(400).slideToggle(400);
+	}
+	function swap2(){
 		$('.register-form-wrap').slideToggle(400);
+		$('.login-form-wrap').delay(400).slideToggle(400);
 	}
 </script>
 
