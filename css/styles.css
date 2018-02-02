@@ -1,0 +1,151 @@
+a {
+	text-decoration:none;
+}
+
+a, a:visited {
+	color:#00F2FF;
+}
+
+a:hover {
+	color:#005EFF;
+}
+
+header{
+	margin-top:0px;
+	height:90px;
+	line-height: 90px;
+}
+
+header h1 {
+	font-family: 'Permanent Marker', cursive;
+}
+
+ul, li {
+	list-style:none;
+	padding-left:0px;
+	padding-top:5px;
+}
+
+.login-button {
+	border-bottom: 1px solid #5bc1ff;
+	border-left: 1px solid #5bc1ff;
+	border-right: 1px solid #5bc1ff;
+	border-top:none;
+	 border-radius:0px 0px 5px 5px
+}
+
+#container{
+	width:80%;
+	margin: 0 auto;
+}
+
+#sidebar-left{
+	width: 20%;
+	float:left;
+}
+
+#main-content{
+	width: 50%;
+	float:left;
+	line-height: 20px;
+}
+
+#main-content > h1 {
+	font-family: 'Permanent Marker', cursive;
+	margin-top:0px;
+	margin-bottom:20px;
+}
+
+#sidebar-right{
+	height:auto;
+	width: 20%;
+	float:right;
+}
+
+#dlc {
+	float:left;
+}
+
+#login-button  {
+	float:right;
+    background-color: #9D9D9D;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    z-index: 99999;
+}
+
+#login-button:hover {
+    background-color: #6f6f6f;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+	cursor:pointer;
+}
+
+#clear{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.login-form-wrap {
+	width: 100%;
+  	background-color: #1e1e1e;
+  	display: none;
+  	border-bottom: 1px solid #5bc1ff;
+}
+
+.login-form-container {
+	width: 800px;
+	margin: 0 auto;
+	line-height: 80px;
+	overflow: hidden;
+}
+
+#login-form-dropdown {
+	height:80px;
+	width:100%;
+	margin: 0 auto;
+	text-transform: Uppercase;
+	text-align:center;
+	z-index: 88;
+}
+
+#login-form input {
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	padding: 0 10px;
+	margin-right: 5px;
+	color:#9d9d9d;
+}
+
+#login-submit{
+	height: 40px;
+	width:60px;
+	background-color:transparent;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom: 2px solid #5bc1ff;
+	color:#9d9d9d;
+	cursor:pointer;
+}
+
+::placeholder {
+    color: #9d9d9d;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #9d9d9d;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: #9d9d9d;
+}

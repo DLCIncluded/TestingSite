@@ -68,13 +68,9 @@ include_once("accountManager.php");
 	</aside><!-- sidebar-left -->
 	<content id="main-content">
 	
-		<h1>Main Header</h1>
+		<h1>Profile Page</h1>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sodales consectetur neque, vitae ultrices mi faucibus a. Donec imperdiet vitae eros nec eleifend. Praesent vitae neque diam. Donec id dolor nec nunc imperdiet consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut non gravida ante, finibus dapibus ipsum. Ut facilisis sodales metus. Donec nulla velit, viverra id sapien quis, rutrum fermentum nisl. Integer risus nulla, hendrerit a interdum non, dictum vel risus. Sed volutpat est quis lobortis posuere. Proin cursus mi et placerat vehicula. Vestibulum vel cursus ipsum, volutpat bibendum mi. Aliquam erat volutpat. Donec ac dignissim urna.
-
-			Donec fermentum arcu at porta bibendum. Donec cursus quis ligula ut pulvinar. Curabitur scelerisque blandit arcu, vel pharetra elit viverra a. Donec id leo at justo rhoncus convallis. Nullam scelerisque arcu urna, eget tincidunt eros lacinia nec. Nullam non magna et tellus placerat pharetra id elementum justo. Cras euismod massa odio, et feugiat nisl tristique quis. Integer dictum erat ipsum, vitae ultricies magna gravida at. Pellentesque sit amet justo massa. Duis gravida scelerisque euismod. Proin et congue tellus. Phasellus a mattis ipsum. Integer vel massa non velit ultrices fermentum. Donec eget augue felis. Nullam non molestie nulla, ac iaculis magna. Etiam non enim in nisi tincidunt eleifend at ac lectus.
-
-			Sed sit amet mauris in dui mollis euismod. Pellentesque dui purus, consequat sed ligula sit amet, sodales porttitor diam. Proin nec tortor interdum, lobortis nibh in, aliquet massa. In quis nibh rutrum mauris malesuada ultricies. Duis ut massa viverra, vehicula velit quis, ullamcorper arcu. Nulla sit amet ultrices leo. Duis vitae hendrerit mauris. Cras lobortis magna eu elit convallis sollicitudin. Nullam metus ligula, mattis et velit maximus, laoreet interdum libero. Sed egestas metus mauris, eu congue magna convallis eu. Sed sed justo vitae quam fermentum suscipit sed sed orci. Fusce elementum ac magna at faucibus.
+			This will be the simple Profile page of whomevers profile it is using a GET function that I cant be bothered to code right now because im tired....
 		</p>
 	
 	</content><!-- main-content -->
