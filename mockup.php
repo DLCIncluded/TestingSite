@@ -14,23 +14,7 @@ include_once("accountManager.php");
 <link href="css/stars.css" rel="stylesheet"> 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-	  $('.login-button').click(function() {
-		$('.login-form-wrap').slideToggle(400);
-		console.log("Done")
-	  });
-	});
-	
-	function swap1(){
-		$('.login-form-wrap').slideToggle(400);
-		$('.register-form-wrap').delay(400).slideToggle(400);
-	}
-	function swap2(){
-		$('.register-form-wrap').slideToggle(400);
-		$('.login-form-wrap').delay(400).slideToggle(400);
-	}
-</script>
+<script src="scripts.js"></script>
 
 </head>
 
