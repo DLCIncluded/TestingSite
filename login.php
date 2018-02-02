@@ -12,14 +12,22 @@ if(isset($_POST['username'])){
 if(isset($_SESSION['username']) && !isset($_POST['username'])){
 	echo "You are already logged in ".$_SESSION['fName'];
 } elseif (!isset($_SESSION['username']) && !isset($_POST['username'])) {
-	echo '<form method="POST" action="login.php">
 
-				Username: <input type="text" name="username" id="username" placeholder="Username" required/><br/>
-				Password: <input type="password" name="pass" id="pass" placeholder="Password" required/><br/>
-				
-				<input type="submit" name="submitbtn" id="submitbtn">
+?>
+	<form method="POST" action="login.php" id="login-form">
+		<input type="text" name="username" id="username" placeholder="Username" required/>
+		<input type="password" name="pass" id="pass" placeholder="Password" required/>
+		<button type="submit" id="login-submit">Submit</button> <br>
+		<p>Don't Have an Account? <a href='register.php'>Register</a></p>
+	</form>
+	
+	<!--<form method="POST" action="login.php">
+		Username: <input type="text" name="username" id="username" placeholder="Username" required/><br/>
+		Password: <input type="password" name="pass" id="pass" placeholder="Password" required/><br/>
+		<input type="submit" name="submitbtn" id="submitbtn">	
+	</form>-->
 			
-			</form>';
+<?PHP
 	}
 ?>
 

@@ -33,12 +33,9 @@ include_once("accountManager.php");
 <div class="login-form-wrap">
 	<div class="login-form-container">
 		<div id="login-form-dropdown" class="login-form-dropdown">
-			<form method="POST" action="login.php" id="login-form">
-				<!-- Username:  --><input type="text" name="username" id="username" placeholder="Username" required/>
-				<!-- Password:  --><input type="password" name="pass" id="pass" placeholder="Password" required/>
-				<button type="submit" id="login-submit">Submit</button>		
-				<!-- <input type="submit" name="submitbtn" id="submitbtn"> -->
-			</form>
+			<?PHP
+			include("login.php");
+			?>
 		</div>
 	</div>
 </div>

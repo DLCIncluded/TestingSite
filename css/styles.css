@@ -104,9 +104,14 @@ ul, li {
 	line-height: 80px;
 	overflow: hidden;
 }
+#login-form > p{
+	line-height: 10px;
+	size:10pt;
+	position:relative;
+}
 
 #login-form-dropdown {
-	height:80px;
+	height:100px;
 	width:100%;
 	margin: 0 auto;
 	text-transform: Uppercase;
