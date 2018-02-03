@@ -89,20 +89,7 @@ include_once("accountManager.php");
 			because we are actively developing!) <br><br>
 			
 			PS A big shout out to Pruitt(chj1axr0) for helping out on the site. You are awesome!<br><br><br>
-			
-			
-			
-			PAGE LEGTH TEST<br>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae mauris rhoncus nisi dictum elementum eu in eros. Fusce sed iaculis ante. Praesent mi nunc, blandit a purus blandit, imperdiet lacinia mauris. Integer euismod malesuada euismod. Aliquam nec ligula vitae est suscipit hendrerit scelerisque id lacus. Pellentesque quis congue felis. Morbi mollis congue mi, at gravida orci. Integer facilisis, libero ut suscipit fermentum, dolor massa euismod libero, sed cursus nulla libero in eros.
-			<br>
-			Cras orci erat, finibus sed dignissim sed, eleifend eu enim. In hac habitasse platea dictumst. Pellentesque volutpat hendrerit leo vitae scelerisque. Nulla nisl velit, blandit in gravida non, eleifend ac purus. Fusce vitae felis in mi lobortis tincidunt eget at nunc. Mauris consectetur quis lacus quis fringilla. Quisque mattis ornare orci quis vestibulum. Praesent placerat elit vitae felis congue, id suscipit mauris tristique. Proin sit amet libero id odio tincidunt malesuada eget sed nibh. Nulla metus tortor, dapibus sed orci vel, aliquam dignissim enim. Vivamus id blandit metus. Aliquam porttitor risus et elit aliquam, et tempus nisi imperdiet. Ut ac elementum purus, nec pretium tortor. Praesent porta id nibh sed pharetra. Donec hendrerit leo velit, eget suscipit felis euismod ac.
-			<br>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin hendrerit lacinia tellus. In gravida viverra semper. Donec sed pulvinar mi, at commodo tortor. Cras et nisi elit. Ut gravida dictum viverra. Donec aliquam ante a iaculis ultricies. Duis placerat ex interdum est ultrices pretium. Sed malesuada ultricies dictum. Proin et dui vitae diam blandit ultrices sed id enim. Fusce ornare enim in interdum semper. Duis eget risus euismod, egestas felis eget, imperdiet lorem. Suspendisse eget nibh consequat, ultrices nunc eget, ultricies metus. Nunc et nisl eleifend, ultrices nisi at, semper tellus. Donec in nulla accumsan, condimentum nunc eu, egestas neque. Morbi a fringilla dui, vitae posuere lectus.
-			
-			
-			
-			
-			
+
 		</p>
 	
 	</content><!-- main-content -->

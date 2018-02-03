@@ -72,6 +72,8 @@ footer {
 	padding-right: 0px;
 	padding-bottom: 15px;
 	padding-left: 0px;
+	position:absolute;
+	bottom:0;
 }
 
 #dlc {

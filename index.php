@@ -1,1 +1,0 @@
-<img src="https://i.ytimg.com/vi/qkudeorV03o/maxresdefault.jpg"/>

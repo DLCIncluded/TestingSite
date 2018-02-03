@@ -1,5 +1,5 @@
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script>
+
+<script type="text/javascript">
 function checkAvailability() {
 	//$("#loaderIcon").show();
 	jQuery.ajax({
@@ -17,7 +17,7 @@ function checkAvailability() {
 
 <?PHP
 //ini_set('display_errors', '1');
-session_start();
+
 
 if(isset($_SESSION['username'])){
 	echo "You are already logged in, you cannot register again. Not ".$_SESSION['username']."? <a href='logout.php'>Logout</a>";
