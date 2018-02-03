@@ -64,11 +64,14 @@ ul, li {
 
 footer {
 	margin-top:25px;
-	text-align:center;
-	width:100%;
-  	border-top: 1px solid #5bc1ff;
-  	background-color: rgba(30, 30, 30,0.5);
-	padding:15px 0px;
+	text-align: center;
+	width: 100%;
+	border-top: 1px solid #5bc1ff;
+	background-color: rgba(30, 30, 30,0.5);
+	padding-top: 15px;
+	padding-right: 0px;
+	padding-bottom: 15px;
+	padding-left: 0px;
 }
 
 #dlc {

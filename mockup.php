@@ -110,11 +110,14 @@ include_once("accountManager.php");
 		<?PHP include("playerCheck.php"); ?>
 	</aside><!-- sidebar-right -->
 
+
 </div><!-- / container -->
 <span id="clear"></span>
-	<footer>
-	&copy; Copyright DLCIncluded 
-	</footer>
+
+<footer>
+	&copy; Copyright 2018 DLCIncluded 
+</footer>
+    
 <!-- Partical effect  -->
 <div class="stars-container">
 	<div id="stars"></div>
