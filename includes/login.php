@@ -1,6 +1,5 @@
 <?PHP
-//ini_set('display_errors', '1');
-session_start();
+ini_set('display_errors', '1');
 include_once("dbConn.php");
 include_once('accountManager.php');
 
@@ -28,6 +27,8 @@ if(isset($_SESSION['username']) && !isset($_POST['username'])){
 	</form>-->
 			
 <?PHP
+	}else{
+		echo "error";
 	}
 ?>
 
