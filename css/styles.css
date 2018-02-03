@@ -62,9 +62,32 @@ ul, li {
 	float:right;
 }
 
+footer {
+	margin-top:25px;
+	text-align:center;
+	width:100%;
+  	border-top: 1px solid #5bc1ff;
+  	background-color: rgba(30, 30, 30,0.5);
+	padding:15px 0px;
+}
+
 #dlc {
 	float:left;
+	margin-bottom:25px;
 }
+
+#dlc > h1 {
+	font-size:3em;
+	text-shadow:2px 2px 3px #5bffe9;
+}
+#dlc > p {
+	line-height:20px;
+	margin-top:-20px;
+	margin-left:20px;
+	text-shadow:1px 1px 1px #5bffe9;
+}
+
+
 
 #login-button  {
 	float:right;

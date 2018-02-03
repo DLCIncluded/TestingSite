@@ -14,10 +14,10 @@ if(isset($_SESSION['username']) && !isset($_POST['username'])){
 } elseif (!isset($_SESSION['username']) && !isset($_POST['username'])) {
 
 ?>
-	<form method="POST" action="login.php" id="login-form">
+	<form method="POST"  id="login-form"><!-- action="login.php" -->
 		<input type="text" name="username" id="username" placeholder="Username" required/>
 		<input type="password" name="pass" id="pass" placeholder="Password" required/>
-		<button type="submit" id="login-submit">Submit</button> <br>
+		<button type="submit" id="login-submit" onClick="login()">Submit</button> <br>
 		<p>Don't Have an Account? <a onClick="swap1()">Register</a></p>
 	</form>
 	
