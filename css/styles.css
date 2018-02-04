@@ -26,6 +26,15 @@ ul, li {
 	padding-top:5px;
 }
 
+.success{
+	background:url(../images/check.png) no-repeat scroll 7px 7px!important;
+	padding-left:25px!important;
+}
+.fail{
+	background:url(../images/cross.png) no-repeat scroll 7px 7px!important;
+	padding-left:25px!important;
+}
+
 .login-button {
 	border-bottom: 1px solid #5bc1ff;
 	border-left: 1px solid #5bc1ff;

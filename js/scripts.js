@@ -46,15 +46,21 @@
 			}
 		return false;
 	}
+	
 	function checkAvailability() {
-		//$("#loaderIcon").show();
 		jQuery.ajax({
 		url: "includes/check_availability.php",
 		data:'username='+$("#reg-username").val(),
 		type: "POST",
 		success:function(data){
-			$("#user-availability-status").html(data);
-			//$("#loaderIcon").hide();
+			//$("#user-availability-status").html(data);
+			if(data=="success"){
+				$("#reg-username").addClass("success");
+				$("#reg-username").removeClass("fail");
+			}else{
+				$("#reg-username").removeClass("success");
+				$("#reg-username").addClass("fail");
+			}
 		},
 		error:function (){}
 		});

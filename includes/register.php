@@ -1,32 +1,12 @@
-<!--
-<script type="text/javascript">
-function checkAvailability() {
-	//$("#loaderIcon").show();
-	jQuery.ajax({
-	url: "includes/check_availability.php",
-	data:'username='+$("#reg-username").val(),
-	type: "POST",
-	success:function(data){
-		$("#user-availability-status").html(data);
-		//$("#loaderIcon").hide();
-	},
-	error:function (){}
-	});
-}
-</script>
--->
 <?PHP
-ini_set('display_errors', '1');
-
-
 if(isset($_SESSION['username'])){
 	echo "You are already logged in, you cannot register again. Not ".$_SESSION['username']."? <a href='logout.php'>Logout</a>";
 } else {
 ?><form method="POST" action="includes/accountHandler.php" id="register-form">
 	<input type="text" name="fName" id="fName" placeholder="First Name" required/> 
 	<input type="text" name="lName" id="lName" placeholder="Last Name" required/><br>
-	<input type="text" name="email" id="email" placeholder="Email" required/>
-	<input type="text" name="username" id="reg-username" placeholder="Username" required onKeyUp="checkAvailability()"><span id="user-availability-status"></span> <br>   
+	<span id="test"><input type="text" name="email" id="reg-email" placeholder="Email" required/>
+	<input type="text" name="username" id="reg-username" placeholder="Username" required onKeyUp="checkAvailability()"><span id="user-availability-status"></span></span> <br>   
 	<input type="password" name="pass1" id="pass1" placeholder="Password" required/>
 	<input type="password" name="pass2" id="pass2" placeholder="Repeat Password" required/><br>
 	<input type="date" name="birthday" id="birthday" placeholder="birthday mm/dd/yyyy" style="width:190px;" required/>
