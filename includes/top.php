@@ -1,7 +1,9 @@
 <?PHP
 ini_set('display_errors', '1');
+session_start();
 include_once("includes/dbConn.php");
-include_once("includes/accountManager.php");
+include_once("includes/accountFunctions.php");
+checklogin();
 ?>
 
 <html>
@@ -22,28 +24,44 @@ include_once("includes/accountManager.php");
 
 <body>
 
-<!-- login-form-dropdown -->
-<div class="login-form-wrap">
-	<div class="login-form-container">
-		<div id="login-form-dropdown" class="login-form-dropdown">
-			<?PHP
-				include("login.php");
-			?>
-		</div>
-	</div>
-</div>
 
-<div class="register-form-wrap">
-	<div class="register-form-container">
-		<div id="register-form-dropdown" class="register-form-dropdown">
-			<?PHP
-				include("register.php");
-			?>
+	<?PHP
+	if (!isset($username)) { //if not logged in give the login form &&|| reg form
+	?>
+		<!-- login-form-dropdown -->
+		<div class="login-form-wrap">
+			<div class="login-form-container">
+				<div id="login-form-dropdown" class="login-form-dropdown">
+					<?PHP
+						include_once("login.php");
+					?>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-<!-- /login-form-dropdown -->
 
+		<div class="register-form-wrap">
+			<div class="register-form-container">
+				<div id="register-form-dropdown" class="register-form-dropdown">
+					<?PHP
+						include_once("register.php");
+					?>
+				</div>
+			</div>
+		</div>
+		<!-- register-form-dropdown -->
+	<?PHP
+	} else{
+	?>
+		<div class="profile-form-wrap">
+			<div class="profile-form-container">
+				<div id="profile-form-dropdown" class="profile-form-dropdown">
+					<?PHP include_once('miniProfile.php'); ?>
+				</div>
+			</div>
+		</div>
+	<?PHP
+	}
+	?>
 <div id="container">
 	<header id="header">
 		<div id="dlc">
@@ -51,7 +69,17 @@ include_once("includes/accountManager.php");
 			<p>The Only DLC that matters</p>
 		</div>
 		<!-- dlc -->
+		<?PHP
+		if (!isset($_SESSION['username']) && !isset($_POST['username'])) { //if not logged in give the login form &&|| reg form
+		?>
 		<button id="login-button" class="login-button"> Login </button>
+		<?PHP
+		} else {
+		?>
+			<button id="profile-button" class="profile-button"> Profile </button>
+		<?PHP
+		}
+		?>
 	<!-- login-button -->
 	<!-- <span id="clear"></span> -->
 	</header><!-- header -->
@@ -60,11 +88,38 @@ include_once("includes/accountManager.php");
 	<aside id="sidebar-left">
 	
 		<ul>
-			<li><a href="#">News</a></li>
+			<!--<li><a href="#">News</a></li>
 			<li><a href="#">Contact</a></li>
 			<li><a href="#">Apply</a></li>
 			<li><a href="#">About</a></li>
-			<li><a href="#">Home</a></li>
+			-->
+			<li><a href="index.php">Home</a></li>
+			<?PHP
+				if(isset($username)){
+			?>
+			<li><a href="profile.php?username=<?PHP echo $username; ?>">Profile</a></li>
+			<?PHP
+			}
+				$sql = "SELECT * FROM Pages";
+				$result = $connection->query($sql);
+				
+				if($result->num_rows > 0){ 
+
+					while($row = $result->fetch_assoc()){
+						$name=$row['name'];
+						if($name == "home"){
+						}else{
+					
+					?>
+					
+							<li><a href="<?PHP echo $name; ?>.php"><?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></a></li>
+
+					<?PHP
+						}
+					}
+				}
+					?>
+			
 		</ul>
 	
 	</aside><!-- sidebar-left -->

@@ -1,8 +1,15 @@
 <?PHP
-//ini_set('display_errors', '1');
+ini_set('display_errors', '1');
+
 include_once("dbConn.php");
 
-function login($log_username,$log_password){
+		//*******************************************
+		//*******************************************
+		//************Custom Functions***************
+		//*******************************************
+		//*******************************************
+
+function login($log_username,$log_password,$log_page){
 	
 $username = $log_username;
 $pass = $log_password;
@@ -12,8 +19,7 @@ $pass = $log_password;
 		if ($username != "") {
 			if ($pass != "") {
 
-					
-					$sql = "SELECT * FROM Users WHERE username='".$username."'"; 
+					$sql = "SELECT * FROM Users WHERE username='".$username."' AND active='1'"; 
 					global $connection;
 					$result = $connection->query($sql);
 					
@@ -29,8 +35,7 @@ $pass = $log_password;
 							$_SESSION['lName'] = $row['lName'];
 							$_SESSION['mcUsername'] = $row['mcUsername'];
 							$_SESSION['siteLevel'] = $row['siteLevel'];
-							return "You have successfully been logged in ".$_SESSION['username'];
-
+							header("Location: ../".$log_page);
 						}else{
 							return "bad password <a href='login.php'>try again</a>";
 						}
@@ -56,7 +61,54 @@ function logout(){
 	unset($_SESSION['mcUsername']);
 	unset($_SESSION['siteLevel']);
 	
-	if(!isset($_SESSION['username'])){ return "You have been logged out"; }
+	if(!isset($_SESSION['username'])){ 
+		header("Location: ../index.php");
+	}
+}
+
+function activate($username,$code){
+	
+	$check = "SELECT active FROM Users WHERE username = '".$username."' AND activeCode='".$code."'";
+	global $connection;
+	$result = $connection->query($check);
+	
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()){
+			
+			$sql = "UPDATE Users SET active = '1' WHERE username = '".$username."'";// set as active
+			if($connection->query($sql) === TRUE){
+				echo "Successfully activated ".$username;
+				echo "Please click the button in the top right to login.";
+			} else {
+				echo "An Error Occured please let the Admin know.";
+			}
+		}
+		
+	} else {
+		echo "Incorrect username or code...";
+	}
+}
+
+function checklogin(){
+	if(isset($_SESSION['username'])){
+		$GLOBALS['username']=$_SESSION['username'];
+		$GLOBALS['id']=$_SESSION['id'];
+		$GLOBALS['fName']=$_SESSION['fName'];
+		$GLOBALS['lName=']=$_SESSION['lName'];
+		$GLOBALS['mcUsername']=$_SESSION['mcUsername'];
+		$GLOBALS['siteLevel']=$_SESSION['siteLevel'];
+	}
+}
+
+function delUser($user){
+	$username=$user;
+	$sql = "DELETE FROM Users WHERE username='".$username."'"; 
+	global $connection;
+	if($connection->query($sql) === TRUE){
+		return "Successfully deleted ".$username;
+	}else {
+		return $sql . "<br>" . $connection->error;
+	}
 }
 
 

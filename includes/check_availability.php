@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', '1');
-include("accountManager.php");
+include("accountFunctions.php");
 if(!empty($_POST["username"])) {
   $query = "SELECT * FROM Users WHERE userName='" . $_POST["username"] . "'";
   $user_count = numRows($query);

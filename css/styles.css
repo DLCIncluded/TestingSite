@@ -132,6 +132,7 @@ footer {
 	line-height: 80px;
 	overflow: hidden;
 }
+
 #login-form > p{
 	line-height: 10px;
 	size:10pt;
@@ -251,6 +252,61 @@ footer {
 	border-bottom: 2px solid #5bc1ff;
 	color:#9d9d9d;
 	cursor:pointer;
+}
+
+.profile-form-wrap {
+	width: 100%;
+  	background-color: #1e1e1e;
+  	display: none;
+  	border-bottom: 1px solid #5bc1ff;
+}
+
+.profile-form-container {
+	width: 800px;
+	margin: 0 auto;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+#profile-form > p{
+	line-height: 10px;
+	size:10pt;
+	position:relative;
+}
+
+#profile-form-dropdown {
+	height:auto;
+	width:100%;
+	margin: 0 auto;
+	text-transform: Uppercase;
+	text-align:center;
+	z-index: 88;
+}
+
+#profile-button  {
+	float:right;
+    background-color: #9D9D9D;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    z-index: 99999;
+}
+
+#profile-button:hover {
+    background-color: #6f6f6f;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+	cursor:pointer;
+}
+.profile-button {
+	border-bottom: 1px solid #5bc1ff;
+	border-left: 1px solid #5bc1ff;
+	border-right: 1px solid #5bc1ff;
+	border-top:none;
+	 border-radius:0px 0px 5px 5px
 }
 
 table {

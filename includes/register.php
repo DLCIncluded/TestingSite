@@ -16,13 +16,13 @@ function checkAvailability() {
 </script>
 
 <?PHP
-//ini_set('display_errors', '1');
+ini_set('display_errors', '1');
 
 
 if(isset($_SESSION['username'])){
 	echo "You are already logged in, you cannot register again. Not ".$_SESSION['username']."? <a href='logout.php'>Logout</a>";
 } else {
-?><form method="POST" action="regScript.php" id="register-form">
+?><form method="POST" action="includes/accountHandler.php" id="register-form">
 	<input type="text" name="fName" id="fName" placeholder="First Name" required/> 
 	<input type="text" name="lName" id="lName" placeholder="Last Name" required/><br>
 	<input type="text" name="email" id="email" placeholder="Email" required/>
@@ -40,6 +40,7 @@ if(isset($_SESSION['username'])){
 	</select><br>
 	
 	<input type="text" name="authA" id="authA" placeholder="Question Answer" required />
+	<input type="hidden" name="register" value="register" />
 	<button type="submit" id="register-submit">Submit</button><br>
 	<a onclick="swap2()">Cancel/Close</a>
 </form>

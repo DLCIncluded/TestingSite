@@ -1,6 +1,13 @@
-$(document).ready(function() {
+	$(document).ready(function() {
 	  $('.login-button').click(function() {
 		$('.login-form-wrap').slideToggle(400);
+		console.log("Done")
+	  });
+	});
+	
+	$(document).ready(function() {
+	  $('.profile-button').click(function() {
+		$('.profile-form-wrap').slideToggle(400);
 		console.log("Done")
 	  });
 	});
@@ -20,7 +27,7 @@ $(document).ready(function() {
 			if(username!="" && pass!=""){
 				$.ajax({
 					type:'post',
-					url:'login.php',
+					url:'accountManager.php',
 					data:{
 						login:'login',
 						username:username,
@@ -28,7 +35,7 @@ $(document).ready(function() {
 					},
 					success:function(response){
 						if(response=='success'){
-							window.location.href='mockup.php';
+							window.location.href='TEMPLATE.php';
 						}else{
 							alert("Invalid Username or Password");
 						}

@@ -1,4 +1,5 @@
 <?PHP
+ini_set('display_errors', '1');
 include("includes/top.php");
 require("includes/MulticraftAPI.php");
 $api = new MulticraftAPI('http://dlcincluded.com/multicraft/api.php', 'DLCIncluded', '+n2DLp2z*mZoBz');
@@ -22,6 +23,16 @@ if(isset($_GET['delete'])){
 	$delete=$_GET['delete'];
 } else {
 	$delete="";
+}
+if(isset($_GET['page'])){
+	$page=$_GET['page'];
+} else {
+	$page="";
+}
+if(isset($_GET['name'])){
+	$name=$_GET['name'];
+} else {
+	$name="";
 }
 
 if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['siteLevel'] >= 5){ //if logged in and level >= 5
@@ -62,6 +73,10 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		echo changePass($_POST['username'],$_POST['newPass']);
 	}
 	
+	if(isset($_POST['delBtn'])){
+		echo delUser($_POST['username']);
+	}
+	
 
 	if(isset($_POST['mcsubmit'])){ //add user to Multicraft via API
 		echo "Creating multicraft account for ".$_POST['username'];
@@ -91,6 +106,79 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 			
 			mail($email, $subject, $message, implode("\r\n", $headers));
 			
+		}
+	}
+	
+	if(isset($_POST['new-page-submit'])){
+		$name=$_POST['pageName'];
+		$name=str_replace(" ","_",$name); 
+		$name=strtolower($name);  
+		$page=$_POST['pageData'];
+		$sql = "INSERT INTO Pages VALUES (NULL,'".$name."','".$page."')"; 
+		if($connection->query($sql) === TRUE){
+			echo "Page created at <a href='".$name.".php'>".$name."</a>";
+			
+			$file = $name.'.php';
+			if(!is_file($file)){
+				$contents = 'This is a test!';
+				file_put_contents($file, "
+				
+				<?php include('includes/top.php'); 
+				
+					\$page = basename(__FILE__, '.php'); 
+	
+					\$sql = \"SELECT * FROM Pages WHERE name='\".\$page.\"'\";
+					
+					\$result = \$connection->query(\$sql); 
+					
+					if(\$result->num_rows > 0){
+						while(\$row = \$result->fetch_assoc()){
+							
+							\$name=str_replace('_',' ',\$row['name']); 
+							\$name=strtolower(\$name);
+							\$name=ucfirst(\$name); 
+							echo '<title>'.\$name.'</title>';
+							echo \$row['pageData'];
+						}
+					} else {
+						echo 'No page found.';
+					}
+					
+				include_once('includes/bottom.php'); 
+				?>
+				
+				
+				");
+			}
+			
+		}else {
+			echo $sql . "<br>" . $connection->error;
+		}
+	}
+	
+	if(isset($_POST['edit-page-submit'])){
+		$name=$_POST['pageName'];
+		$page=$_POST['pageData'];
+		$sql = "Update Pages SET pageData='".$page."' WHERE name='".$name."'"; 
+		if($connection->query($sql) === TRUE){
+			echo "edits were successful for <a href='".$name.".php'>".$name."</a>";
+		}else {
+			echo $sql . "<br>" . $connection->error;
+		}
+	}
+	
+	if(isset($_POST['delete-page-submit'])){
+		$name=$_POST['pageName'];
+		$file = $name.'.php';
+		$sql = "DELETE FROM Pages WHERE name='".$name."'"; 
+		if($connection->query($sql) === TRUE){
+			if(unlink($file)){
+			echo "Successfully deleted ".$name." <a href='admin-remake.php'>Reload page</a>";
+			}else{
+				echo "failed to delete the file.. please let the admin know that ".$file." was not deleted successfully...";
+			}
+		}else {
+			echo $sql . "<br>" . $connection->error;
 		}
 	}
 	
@@ -140,13 +228,102 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 				</table>
 			</div>
 			
+			<div id='functions-table'>
+				<ul>
+					<li><a href="admin-remake.php?edit=true&page=new">New Page</a></li>
+					<li><a href="admin-remake.php?edit=true&page=edit">Edit a Page</a></li>
+				</ul>
+			</div>
+			
 		<?PHP
+		
+	}elseif(isset($edit) && $edit=="true" && ($username=="" || !isset($username)) && ($pass=="" || $pass!="true") && $page=="new"){
+		
+		//*******************************************
+		//*******************************************
+		//************PAGE CREATION******************
+		//*******************************************
+		//*******************************************
+		?>
+		
+			<h1>New Page</h1>
+			
+			<form method="POST" action="admin-remake.php">
+				<input type="text" name="pageName" placeholder="Page Name" />Spaces are okay, it will change to an underscore on the backend automagically<br>
+                <textarea placeholder="Page Data" cols=50 rows=15 name="pageData"></textarea><br>
+                <button type="submit" name="new-page-submit" value="new-page-submit">Submit</button>
+			</form>
+			
+		
+		<?PHP
+		
+		
+	
+	}elseif(isset($edit) && $edit=="true" && ($username=="" || !isset($username)) && ($pass=="" || $pass!="true") && $page=="edit" && ($name=="" || !isset($name))){
+		echo "this is the edit selection page";
+		//*******************************************
+		//*******************************************
+		//********* PAGE EDIT SELECTION**************
+		//*******************************************
+		//*******************************************
+		
+		//$sql = "SELECT * FROM Pages WHERE name='". $name ."'";
+		$sql = "SELECT * FROM Pages";
+		$result = $connection->query($sql);
+		
+		if($result->num_rows > 0){ 
+			while($row = $result->fetch_assoc()){
+				$name=$row['name'];
+				?><br>
+				<a href="admin-remake.php?edit=true&page=edit&name=<?PHP echo $name;?>"><?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></a>
+				<?PHP
+			}
+		}else{
+		?>
+			There was no page found try again...
+		<?PHP
+		}
+	}elseif(isset($edit) && $edit=="true" && ($username=="" || !isset($username)) && ($pass=="" || $pass!="true") && $page=="edit" && ($name!="" || isset($name))){
+		
+		$sql = "SELECT * FROM Pages WHERE name='". $name ."'";
+
+		$result = $connection->query($sql);
+		
+		if($result->num_rows == 1){ //make sure we only have one result
+			while($row = $result->fetch_assoc()){
+				$name=$row['name'];
+				$pageData=$row['pageData'];
+				?>
+				
+				<h1>Edit Page</h1>
+				
+				<form method="POST" action="admin-remake.php">
+					<input type="text" name="" value="<?PHP echo $name; ?>" disabled/><br>
+					<input type="hidden" name="pageName" value="<?PHP echo $name; ?>"/>
+					<textarea placeholder="Page Data" cols=50 rows=15 name="pageData"><?PHP echo $pageData; ?></textarea>
+					<button type="submit" name="edit-page-submit" value="edit-page-submit">Submit</button>
+				</form>
+				<form method="POST" action="admin-remake.php">
+					<input type="hidden" name="pageName" value="<?PHP echo $name; ?>"/>
+					<button type="submit" name="delete-page-submit" value="delete-page-submit">Delete</button>
+				</form>
+				
+				
+				
+				<?PHP
+			}
+		}else{
+		?>
+			There was no page found try again...
+		<?PHP
+		}
+	
 	} elseif(isset($edit) && $edit=="true" && $username!="" && ($pass=="" || $pass!="true") && ($delete=="" || $delete!="true")) {
 		
 		
 		//*******************************************
 		//*******************************************
-		//*****************EDIT PAGE*****************
+		//************USER EDIT PAGE*****************
 		//*******************************************
 		//*******************************************
 		
@@ -159,7 +336,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 				$q1="";
 				$q2="";
 				$q3="";
-				$q4="";
+				$q4=""; 
 				$q5="";
 				if($row['authQ'] === 'q1'){$q1="selected";}
 				if($row['authQ'] === 'q2'){$q2="selected";}
@@ -295,14 +472,14 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 	}elseif(($delete!="" || $delete=="true") && $username!=""){
 		?>
 		ARE YOU 110% sure you wish to delete <?PHP echo $username; ?>??<br>
-		If NOT, please click <a href='admin-remake.php?edit=true&username=<?PHP echo $_GET['username']; ?>'>here</a> to go back.
+		If NOT, please click <a href='admin-remake.php?edit=true&username=<?PHP echo $_GET['username']; ?>'>here</a> to go back. (PS NOT IMPLEMENTED YET - JUST HERE FOR TESTING) 
 		
 		<br><br>
 		
 		Click here to delete the account. This IS PERMINENT so please click carefully: 
 		<form method="POST" action="admin-remake.php">
 			<input type="hidden" name="username" value="<?PHP echo $username; ?>" />
-			<input type="submit" name="delBtn" id="delBtn" />
+			<input type="submit" name="delBtn" value="delBtn" id="delBtn" />
 		</form>
 		<?PHP
 	}elseif($username==""){ //if no user supplied in url 
