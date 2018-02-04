@@ -40,15 +40,15 @@ Connected players:
 	
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
-			$username=$row['username'];
+			$mcUsername=$row['mcUsername'];
 		}
 	?>
-	<li><img src="https://crafatar.com/avatars/<?PHP echo getMCPic($username); ?>" height="20px" width="20px"/><a href="profile.php?username=<?PHP echo $username ?>"><?php echo htmlspecialchars( $Player ); ?></a></li>
+	<li><img src="<?PHP echo checkMCPic($mcUsername,"head"); ?>" height="20px" width="20px"/><a href="profile.php?username=<?PHP echo $username ?>"><?php echo htmlspecialchars( $Player ); ?></a></li>
 	<?php
 	}else{
 
 ?>
-	<li><?php echo htmlspecialchars( $Player ); ?></li>
+	<li><img src="<?PHP echo checkMCPic(htmlspecialchars($Player),"head"); ?>" height="20px" width="20px"/><?php echo htmlspecialchars( $Player ); ?></li>
 <?php 
 	}
 endforeach; ?>

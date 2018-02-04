@@ -143,10 +143,69 @@ function numRows($query) {
 }
 
 function getMCPic($mcUser){
-	$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
-	$UUIDdata = json_decode($UUID);
-	echo $UUIDdata->id;
+	$file = $mcUser.'.png';
+		$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
+		$UUIDdata = json_decode($UUID);
+		echo $UUIDdata->id;
 }
+
+
+function checkMCPic($mcUser,$type){
+	if($type=="head"){
+		$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
+		$UUIDdata = json_decode($UUID);
+		$id = $UUIDdata->id;
+		$output_filename_head = "images/mcUsers/".$mcUser."-head.png";
+		if(!is_file($output_filename_head)){
+			
+			$host = "https://crafatar.com/avatars/$mcUser";
+		
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $host);
+			curl_setopt($ch, CURLOPT_VERBOSE, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_AUTOREFERER, false);
+			curl_setopt($ch, CURLOPT_REFERER, "http://dlcincluded.com");
+			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			$result = curl_exec($ch);
+			curl_close($ch);
+
+			$fp = fopen($output_filename_head, 'w');
+			fwrite($fp, $result);
+			fclose($fp);
+			
+		}
+		return $output_filename_head;
+	} elseif($type=="body"){
+		
+		$output_filename_body = "images/mcUsers/".$mcUser."-body.png";
+		if(!is_file($output_filename_body)){
+			
+			$host = "https://crafatar.com/renders/body/$mcUser";
+		
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $host);
+			curl_setopt($ch, CURLOPT_VERBOSE, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_AUTOREFERER, false);
+			curl_setopt($ch, CURLOPT_REFERER, "http://dlcincluded.com");
+			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			$result = curl_exec($ch);
+			curl_close($ch);
+
+			$fp = fopen($output_filename_body, 'w');
+			fwrite($fp, $result);
+			fclose($fp);
+			
+		}
+		return $output_filename_body;
+			
+		}
+		
+
+	}
 
 
 ?>

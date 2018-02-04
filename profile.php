@@ -22,7 +22,7 @@ include_once("includes/top.php");
 					?>
 								<h1><?PHP echo $profile_user; ?>'s Profile</h1>
 								<div id="profile-pic">
-								<img src="https://crafatar.com/avatars/<?PHP echo getMCPic($profile_MCuser); ?>" />
+								<img src="<?PHP echo checkMCPic($profile_MCuser,"body"); ?>" />
 								</div>
 								<div id="profile-info">
 									MC Username:<?PHP echo $profile_MCuser; ?><br>

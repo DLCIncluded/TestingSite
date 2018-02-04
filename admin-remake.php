@@ -34,6 +34,11 @@ if(isset($_GET['name'])){
 } else {
 	$name="";
 }
+if(isset($_GET['delete'])){
+	$delete=$_GET['delete'];
+} else {
+	$delete="";
+}
 
 if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['siteLevel'] >= 5){ //if logged in and level >= 5
 	
@@ -283,7 +288,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 			There was no page found try again...
 		<?PHP
 		}
-	}elseif(isset($edit) && $edit=="true" && ($username=="" || !isset($username)) && ($pass=="" || $pass!="true") && $page=="edit" && ($name!="" || isset($name))){
+	}elseif(isset($edit) && $edit=="true" && ($username=="" || !isset($username)) && ($pass=="" || $pass!="true") && $page=="edit" && ($name!="" || isset($name)) && ($delete=="" || !isset($delete))){
 		
 		$sql = "SELECT * FROM Pages WHERE name='". $name ."'";
 
@@ -303,14 +308,21 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 					<textarea placeholder="Page Data" cols=50 rows=15 name="pageData"><?PHP echo $pageData; ?></textarea>
 					<button type="submit" name="edit-page-submit" value="edit-page-submit">Submit</button>
 				</form>
-				<form method="POST" action="admin-remake.php">
-					<input type="hidden" name="pageName" value="<?PHP echo $name; ?>"/>
-					<button type="submit" name="delete-page-submit" value="delete-page-submit">Delete</button>
-				</form>
-				
 				
 				
 				<?PHP
+				if($name!="home"){
+				?>
+				<a href='admin-remake.php?edit=true&page=edit&name=<?PHP echo $name ?>&delete=true'>Delete Page</a>	
+				<?PHP
+				}
+				?>
+				<br><br>
+				<a href='admin-remake.php?edit=true&page=edit'>Cancel/Go Back</a>	
+				
+				<?PHP
+				
+				
 			}
 		}else{
 		?>
@@ -469,10 +481,23 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		
 		<?PHP
 		
+	}elseif(($delete!="" || $delete=="true") && $name!=""){
+		?>
+		ARE YOU 110% sure you wish to delete <?PHP echo $name; ?>??<br>
+		If NOT, please click <a href='admin-remake.php?edit=true&page=edit&name=<?PHP echo $_GET['name']; ?>'>here</a> to go back. (PS NOT IMPLEMENTED YET - JUST HERE FOR TESTING) 
+		
+		<br><br>
+		
+		Click here to delete the page. This IS PERMINENT so please click carefully: <br><br>
+		<form method="POST" action="admin-remake.php">
+			<input type="hidden" name="pageName" value="<?PHP echo $name; ?>"/>
+			<button type="submit" name="delete-page-submit" value="delete-page-submit">Delete <?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></button>
+		</form>
+		<?PHP
 	}elseif(($delete!="" || $delete=="true") && $username!=""){
 		?>
 		ARE YOU 110% sure you wish to delete <?PHP echo $username; ?>??<br>
-		If NOT, please click <a href='admin-remake.php?edit=true&username=<?PHP echo $_GET['username']; ?>'>here</a> to go back. (PS NOT IMPLEMENTED YET - JUST HERE FOR TESTING) 
+		If NOT, please click <a href='admin-remake.php?edit=true&username=<?PHP echo $_GET['username']; ?>'>here</a> to go back.
 		
 		<br><br>
 		
