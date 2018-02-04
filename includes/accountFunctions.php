@@ -75,10 +75,20 @@ function activate($username,$code){
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
 			
-			$sql = "UPDATE Users SET active = '1' WHERE username = '".$username."'";// set as active
+			$sql = "UPDATE Users SET active = '1' WHERE username = '".$username."' AND active='0'";// set as active
 			if($connection->query($sql) === TRUE){
 				echo "Successfully activated ".$username;
-				echo "Please click the button in the top right to login.";
+				echo " Please click the button in the top right to login.<br><br>";
+				
+				if(mkdir("images/profiles/".$username, 0755)){
+					if(copy("images/default.png","images/profiles/".$username."/profilepic.png")){
+						echo "Successfully created profile folder and setup default profile pic";
+					}else{
+						echo "ERROR:**failed to copy the default profile pic";
+					}
+				}else{
+					echo "ERROR:**failed to create profile directory, please inform an admin or staff member.**";
+				}
 			} else {
 				echo "An Error Occured please let the Admin know.";
 			}
