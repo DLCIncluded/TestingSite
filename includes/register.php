@@ -22,7 +22,7 @@ if(isset($_SESSION['username'])){
 	<input type="text" name="authA" id="authA" placeholder="Question Answer" required />
 	<input type="hidden" name="register" value="register" />
 	<button type="submit" id="register-submit">Submit</button><br>
-	<a onclick="swap2()">Cancel/Close</a>
+	<a class="register-form-button">Cancel/Close</a>
 </form>
 <?PHP
 }

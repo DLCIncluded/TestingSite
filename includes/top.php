@@ -32,7 +32,7 @@ checklogin();
 			<div class="login-form-container">
 				<div id="login-form-dropdown" class="login-form-dropdown">
 					<?PHP
-						include_once("login.php");
+						include_once("includes/login.php");
 					?>
 				</div>
 			</div>
@@ -42,7 +42,7 @@ checklogin();
 			<div class="register-form-container">
 				<div id="register-form-dropdown" class="register-form-dropdown">
 					<?PHP
-						include_once("register.php");
+						include_once("includes/register.php");
 					?>
 				</div>
 			</div>
@@ -54,7 +54,7 @@ checklogin();
 		<div class="profile-form-wrap">
 			<div class="profile-form-container">
 				<div id="profile-form-dropdown" class="profile-form-dropdown">
-					<?PHP include_once('miniProfile.php'); ?>
+					<?PHP include_once('includes/miniProfile.php'); ?>
 				</div>
 			</div>
 		</div>
