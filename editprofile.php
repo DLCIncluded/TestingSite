@@ -4,6 +4,29 @@ include_once("includes/top.php");
 ?>
 <title>Edit Your Profile</title>
 <?PHP
+
+//form handling 
+if(isset($_POST['submitbtn'])){
+	if(isset($_POST['submitbtn'])){ //process the updates on users account
+		$fName=$_POST['fName'];
+		$lName=$_POST['lName'];
+		$email=$_POST['email'];	                  
+		$mcUsername=$_POST['mcUsername'];
+		$birthday=$_POST['birthday'];
+		$bio=$_POST['bio'];
+		$authQ=$_POST['authQ'];
+		$authA=$_POST['authA'];
+		  
+		$sql = "Update Users SET fName='".$fName ."',lName='".$lName."',email='".$email."',mcUsername='".$mcUsername."',birthday='".$birthday."',bio='".$bio."',authQ='".$authQ."',authA='".$authA."' WHERE username='".$username."'"; 
+		if ($connection->query($sql) === TRUE){ //if the query is successful
+			echo "Applying updates for: ".$username." Successful.";
+		} else { //echo out error if failed
+			echo "error: " . $sql . "<br><br>" . $connection->error;
+		}
+	}
+}
+
+
 if(isset($username)){
 	$sql = "SELECT * FROM Users WHERE username='".$username."'";
 	$result = $connection->query($sql); 
@@ -26,7 +49,7 @@ if(isset($username)){
 				<h1>Edit Your Profile</h1>
 				
 				<div id='users-table'>
-					<form action='admin-remake.php' method='POST'>
+					<form action='editprofile.php' method='POST'>
 					<table>
 						<tbody>
 							<tr id='users-row'>
@@ -56,7 +79,7 @@ if(isset($username)){
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>Biography</td>
-								<td id='users-cell'><textarea rows='1' cols='20' name='bio'><?PHP echo $row['bio'] ?></textarea></td>
+								<td id='users-cell'><textarea rows='7' cols='40' name='bio'><?PHP echo $row['bio'] ?></textarea></td>
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>Auth Question</td>
