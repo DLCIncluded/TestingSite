@@ -23,10 +23,13 @@ include_once("includes/top.php");
 								<h1><?PHP echo $profile_user; ?>'s Profile</h1>
 								<div id="profile-pic">
 								<img src="<?PHP echo checkMCPic($profile_MCuser,"body"); ?>" />
+								MC Username: <?PHP echo $profile_MCuser; ?><br>
 								</div>
+								<!--
 								<div id="profile-info">
 									MC Username:<?PHP echo $profile_MCuser; ?><br>
 								</div>
+								-->
 								<br>
 								<span id="clear"></span>
 								<?PHP echo $profile_bio; ?>

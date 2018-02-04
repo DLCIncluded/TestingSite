@@ -351,6 +351,10 @@ table {
 
 #profile-pic {
 	float:left;
+	
+}
+#profile-pic img {
+	vertical-align:middle;
 	padding-right:20px;
 }
 
