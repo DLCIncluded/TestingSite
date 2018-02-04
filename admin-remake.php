@@ -358,31 +358,31 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 							<tr id='users-row'>
 								<td id='users-cell'>ID</td>
 								<input type='hidden' value='<?PHP echo $row['id']; ?>' name='id'/>
-								<td id='users-cell'><input type='text' disabled size='1' name='id1' value='<?PHP echo$row['id']; ?>'/></td>
+								<td id='users-cell'><input type='text' disabled size='1' name='id1' value='<?PHP echo $row['id']; ?>'/></td>
 							</tr>
 							<tr id='users-row'>							
 								<td id='users-cell'>First Name</td>
-								<td id='users-cell'><input type='text' size='7' name='fName' value='<?PHP echo$row['fName']; ?>'/></td>
+								<td id='users-cell'><input type='text' size='7' name='fName' value='<?PHP echo $row['fName']; ?>'/></td>
 							</tr>	
 							<tr id='users-row'>	
 								<td id='users-cell'>Last Name</td>
-								<td id='users-cell'><input type='text' size='7' name='lName' value='<?PHP echo$row['lName']; ?>'/></td>
+								<td id='users-cell'><input type='text' size='7' name='lName' value='<?PHP echo $row['lName']; ?>'/></td>
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>Username</td>
-								<td id='users-cell'><input type='text' size='10' name='username' value='<?PHP echo$row['username']; ?>'/></td>
+								<td id='users-cell'><input type='text' size='10' name='username' value='<?PHP echo $row['username']; ?>'/></td>
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>Email</td>
-								<td id='users-cell'><input type='text' size='20' name='email' value='<?PHP echo$row['email']; ?>'/></td>
+								<td id='users-cell'><input type='text' size='20' name='email' value='<?PHP echo $row['email']; ?>'/></td>
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>mcUsername</td>
-								<td id='users-cell'><input type='text' size='20' name='mcUsername' value='<?PHP echo$row['mcUsername']; ?>'/></td>
+								<td id='users-cell'><input type='text' size='20' name='mcUsername' value='<?PHP echo $row['mcUsername']; ?>'/></td>
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>Birthday</td>
-								<td id='users-cell'><input type='text' size='10' name='birthday' value='<?PHP echo $row['birthday']; ?>'/></td>
+								<td id='users-cell'><input type='date' size='10' name='birthday' value='<?PHP echo $row['birthday']; ?>'/></td>
 							</tr>
 							<tr id='users-row'>	
 								<td id='users-cell'>Bio</td>
@@ -392,11 +392,11 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 								<td id='users-cell'>AuthQ</td>
 								<td id='users-cell'>
 								<select name='authQ' id='authQ'>
-									<option value='q1' ".  $q1 ." >What is your favorite Minecraft mob?</option>
-									<option value='q2' ".  $q2 ." >Who was your childhood hero?</option>
-									<option value='q3' ".  $q3 ." >What is your oldest cousin's first and last name?</option>
-									<option value='q4' ".  $q4 ." >Where did your mother and father meet?</option>
-									<option value='q5' ".  $q5 ." >What is a skill you have that not many others have?</option>
+									<option value='q1' <?PHP echo $q1; ?>>What is your favorite Minecraft mob?</option>
+									<option value='q2' <?PHP echo $q2; ?>>Who was your childhood hero?</option>
+									<option value='q3' <?PHP echo $q3; ?>>What is your oldest cousin's first and last name?</option>
+									<option value='q4' <?PHP echo $q4; ?>>Where did your mother and father meet?</option>
+									<option value='q5' <?PHP echo $q5; ?>>What is a skill you have that not many others have?</option>
 								</select>
 								</td>
 							</tr>
