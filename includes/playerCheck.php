@@ -43,7 +43,7 @@ Connected players:
 			$username=$row['username'];
 		}
 	?>
-	<li><a href="profile.php?username=<?PHP echo $username ?>"><?php echo htmlspecialchars( $Player ); ?></a></li>
+	<li><img src="https://crafatar.com/avatars/<?PHP echo getMCPic($username); ?>" height="20px" width="20px"/><a href="profile.php?username=<?PHP echo $username ?>"><?php echo htmlspecialchars( $Player ); ?></a></li>
 	<?php
 	}else{
 

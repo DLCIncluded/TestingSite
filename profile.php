@@ -18,12 +18,11 @@ include_once("includes/top.php");
 								$profile_user = $row['username'];
 								$profile_bio = $row['bio'];
 								$profile_MCuser = $row['mcUsername'];
-								$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$profile_MCuser");
-								$UUIDdata = json_decode($UUID);
+								
 					?>
 								<h1><?PHP echo $profile_user; ?>'s Profile</h1>
 								<div id="profile-pic">
-								<img src="https://crafatar.com/avatars/<?PHP echo $UUIDdata->id; ?>" />
+								<img src="https://crafatar.com/avatars/<?PHP echo getMCPic($profile_MCuser); ?>" />
 								</div>
 								<div id="profile-info">
 									MC Username:<?PHP echo $profile_MCuser; ?><br>

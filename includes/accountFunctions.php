@@ -142,4 +142,11 @@ function numRows($query) {
 	return $rowcount;	
 }
 
+function getMCPic($mcUser){
+	$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
+	$UUIDdata = json_decode($UUID);
+	echo $UUIDdata->id;
+}
+
+
 ?>
