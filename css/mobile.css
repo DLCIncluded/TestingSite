@@ -1,0 +1,90 @@
+@media only screen and (max-width: 500px) {
+	body{
+		margin-left:5px;
+		margin-right:5px;
+	}
+	
+	#header{
+		width:100%;
+	}
+	
+	#container {
+		margin-left:auto;
+		margin-right:auto;
+		width:100%;
+	}
+	
+	#login-button {
+		margin-right:10px;
+	}
+	
+	#profile-button {
+		margin-right:10px;
+	}
+	
+	.login-form-container {
+		width:80%;
+		margin:0 auto;
+	}
+	
+	#login-form-dropdown{
+		height:auto;
+		padding-bottom:30px;
+	}
+	
+	#login-form-dropdown p {
+		line-height:20px;
+	}
+	
+	.register-form-container {
+		width:80%;
+		margin:0 auto;
+	}
+	
+	#register-form-dropdown{
+		height:auto;
+		padding-bottom:30px;
+	}
+	
+	.profile-form-container {
+		width:80%;
+		margin:0 auto;
+	}
+	
+	#profile-form-dropdown{
+		height:auto;
+		padding-bottom:30px;
+	}
+
+	#sidebar-right {
+		float:left;
+		width:10%
+	} 
+	#sidebar-right {
+		float:left;
+		width:10%
+	} 
+  
+	#main-content {
+		width:71%;
+		float:right;
+		margin-right:5%;
+	}
+	
+	#dlc {
+		float:left;
+		margin-bottom:5px;
+	}
+
+	#dlc > h1 {
+		font-size:2em;
+		text-shadow:2px 2px 3px #5bffe9;
+		line-height:30px;
+	}
+	#dlc > p {
+		line-height:20px;
+		margin-top:5px;
+		margin-left:20px;
+		text-shadow:1px 1px 1px #5bffe9;
+	}
+}
