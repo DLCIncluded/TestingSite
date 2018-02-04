@@ -1,8 +1,13 @@
-	$(document).ready(function() {
-	  $('.login-button').click(function() {
-		$('.login-form-wrap').slideToggle(400);
-		console.log("Done")
-	  });
+	$(document).ready(function(){
+		$('.login-button').click(function(){
+    		$('.login-form-wrap').slideToggle('fast', function(){
+        		if($(this).is(':visible')){
+            		$(this).css('display:none');
+        		}else{
+            		$(this).css('display:block');
+        		}
+    		});
+		});
 	});
 	
 	$(document).ready(function() {
