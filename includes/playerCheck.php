@@ -41,9 +41,10 @@ Connected players:
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
 			$mcUsername=$row['mcUsername'];
+			$user=$row['username'];
 		}
 	?>
-	<li><img src="<?PHP echo checkMCPic($mcUsername,"head"); ?>" height="20px" width="20px"/><a href="profile.php?username=<?PHP echo $username ?>"><?php echo htmlspecialchars( $Player ); ?></a></li>
+	<li><img src="<?PHP echo checkMCPic($mcUsername,"head"); ?>" height="20px" width="20px"/><a href="profile.php?username=<?PHP echo $user ?>"><?php echo htmlspecialchars( $Player ); ?></a></li>
 	<?php
 	}else{
 
