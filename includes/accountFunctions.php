@@ -19,33 +19,42 @@ if($log_page=="activate.php"){
 		if ($username != "") {
 			if ($pass != "") {
 
-					$sql = "SELECT * FROM Users WHERE username='".$username."' AND active='1'"; 
+					$sql = "SELECT * FROM Users WHERE username='".$username."'"; // AND active='1'
 					global $connection;
 					$result = $connection->query($sql);
-					
-					while($row = $result->fetch_assoc()){
-						$username = $row['username'];
-						$password_hash = $row['password'];
-						
-						if(crypt($pass, $password_hash) == $password_hash) {
-						//valid password
-							$_SESSION['username'] = $username;
-							$_SESSION['id'] = $row['id'];
-							$_SESSION['fName'] = $row['fName'];
-							$_SESSION['lName'] = $row['lName'];
-							$_SESSION['mcUsername'] = $row['mcUsername'];
-							$_SESSION['siteLevel'] = $row['siteLevel'];
-							header("Location: ../".$log_page);
-						}else{
-							return "bad password <a href='login.php'>try again</a>";
+					if($result->num_rows == 1){
+						while($row = $result->fetch_assoc()){
+							$username = $row['username'];
+							$password_hash = $row['password'];
+							if($row['active']=="1"){
+								if(crypt($pass, $password_hash) == $password_hash) {
+								//valid password
+									$_SESSION['username'] = $username;
+									$_SESSION['id'] = $row['id'];
+									$_SESSION['fName'] = $row['fName'];
+									$_SESSION['lName'] = $row['lName'];
+									$_SESSION['mcUsername'] = $row['mcUsername'];
+									$_SESSION['siteLevel'] = $row['siteLevel'];
+									header("Location: ../".$log_page);
+								}else{
+									header("Location: ../status.php?msg=badpass");
+								}
+							} else {
+								header("Location: ../status.php?msg=notactive");
+							}		
 						}
+					}else{
+						header("Location: ../status.php?msg=usernotexist");
 					}
+					
 
 			} else {
+				header("Location: ../status.php?msg=nopass");
 				return "Missing Password";
 			}
 		
 		} else {
+			header("Location: ../status.php?msg=nousername");
 			return "Missing Username";
 		}
 	}
