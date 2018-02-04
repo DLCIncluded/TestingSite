@@ -46,3 +46,17 @@
 			}
 		return false;
 	}
+	function checkAvailability() {
+		//$("#loaderIcon").show();
+		jQuery.ajax({
+		url: "includes/check_availability.php",
+		data:'username='+$("#reg-username").val(),
+		type: "POST",
+		success:function(data){
+			$("#user-availability-status").html(data);
+			//$("#loaderIcon").hide();
+		},
+		error:function (){}
+		});
+	}
+	

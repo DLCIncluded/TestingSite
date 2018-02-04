@@ -1,10 +1,10 @@
-
+<!--
 <script type="text/javascript">
 function checkAvailability() {
 	//$("#loaderIcon").show();
 	jQuery.ajax({
-	url: "check_availability.php",
-	data:'username='+$("#username").val(),
+	url: "includes/check_availability.php",
+	data:'username='+$("#reg-username").val(),
 	type: "POST",
 	success:function(data){
 		$("#user-availability-status").html(data);
@@ -14,7 +14,7 @@ function checkAvailability() {
 	});
 }
 </script>
-
+-->
 <?PHP
 ini_set('display_errors', '1');
 
@@ -26,7 +26,7 @@ if(isset($_SESSION['username'])){
 	<input type="text" name="fName" id="fName" placeholder="First Name" required/> 
 	<input type="text" name="lName" id="lName" placeholder="Last Name" required/><br>
 	<input type="text" name="email" id="email" placeholder="Email" required/>
-	<input type="text" name="username" id="username" placeholder="Username" required onkeyup="checkAvailability()"><span id="user-availability-status"></span> <br>   
+	<input type="text" name="username" id="reg-username" placeholder="Username" required onKeyUp="checkAvailability()"><span id="user-availability-status"></span> <br>   
 	<input type="password" name="pass1" id="pass1" placeholder="Password" required/>
 	<input type="password" name="pass2" id="pass2" placeholder="Repeat Password" required/><br>
 	<input type="date" name="birthday" id="birthday" placeholder="birthday mm/dd/yyyy" style="width:190px;" required/>
