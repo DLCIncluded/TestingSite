@@ -11,6 +11,9 @@ checklogin();
 <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Russo+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet"> 
 
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
 <link href="css/reset.css" rel="stylesheet"> 
 <link href="css/styles.css" rel="stylesheet"> 
 <link href="css/stars.css" rel="stylesheet"> 
