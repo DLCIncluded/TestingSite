@@ -17,10 +17,17 @@ include_once("includes/top.php");
 							while($row = $result->fetch_assoc()){
 								$profile_user = $row['username'];
 								$profile_bio = $row['bio'];
+								$profile_MCuser = $row['mcUsername'];
 					?>
 								<h1><?PHP echo $profile_user; ?>'s Profile</h1>
+								<div id="profile-pic">
 								<img src="images/profiles/<?PHP echo $profile_user; ?>/profilepic.png" />
-							
+								</div>
+								<div id="profile-info">
+									MC Username:<?PHP echo $profile_MCuser; ?><br>
+								</div>
+								<br>
+								<span id="clear"></span>
 								<?PHP echo $profile_bio; ?>
 								
 

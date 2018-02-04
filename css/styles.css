@@ -348,3 +348,12 @@ table {
 	padding-bottom:5px;
 	margin:0 0;
 }
+
+#profile-pic {
+	float:left;
+	padding-right:20px;
+}
+
+#profile-info {
+	float:left;
+}
