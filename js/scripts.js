@@ -53,7 +53,6 @@
 		data:'username='+$("#reg-username").val(),
 		type: "POST",
 		success:function(data){
-			//$("#user-availability-status").html(data);
 			if(data=="success"){
 				$("#reg-username").addClass("success");
 				$("#reg-username").removeClass("fail");

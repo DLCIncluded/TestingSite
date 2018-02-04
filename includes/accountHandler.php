@@ -62,8 +62,8 @@ include_once("accountFunctions.php");
 														$headers[] = 'From: DLCIncluded Admin <Admin@DLCIncluded.com>';
 														
 														mail($email, $subject, $message, implode("\r\n", $headers));
+														header("Location: http://dlcincluded.com/testing/status.php?msg=register");
 														
-														Echo "You have successfully been registered, Please check your email to activate your account.(you might have to check your spam folder)";
 													} else {
 														Echo "Something has gone seriously wrong, please tell the Admin this(or try again):" . $sql . "<br>" . $connection->error;
 													}

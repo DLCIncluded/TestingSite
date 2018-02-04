@@ -5,8 +5,8 @@ if(isset($_SESSION['username'])){
 ?><form method="POST" action="includes/accountHandler.php" id="register-form">
 	<input type="text" name="fName" id="fName" placeholder="First Name" required/> 
 	<input type="text" name="lName" id="lName" placeholder="Last Name" required/><br>
-	<span id="test"><input type="text" name="email" id="reg-email" placeholder="Email" required/>
-	<input type="text" name="username" id="reg-username" placeholder="Username" required onKeyUp="checkAvailability()"><span id="user-availability-status"></span></span> <br>   
+	<input type="text" name="email" id="reg-email" placeholder="Email" required/>
+	<input type="text" name="username" id="reg-username" placeholder="Username" required onKeyUp="checkAvailability()"> <br>
 	<input type="password" name="pass1" id="pass1" placeholder="Password" required/>
 	<input type="password" name="pass2" id="pass2" placeholder="Repeat Password" required/><br>
 	<input type="date" name="birthday" id="birthday" placeholder="birthday mm/dd/yyyy" style="width:190px;" required/>
