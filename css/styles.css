@@ -42,8 +42,9 @@ ul, li {
 #container{
 	width:80%;
 	margin: 0 auto;
-	min-height: 100%;
-	/*margin-bottom: -81px;*/
+	min-height:calc(100vh - 81px);
+	/*min-height: 100%;
+	margin-bottom: -81px;*/
 }
 
 #sidebar-left{
