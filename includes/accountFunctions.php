@@ -11,7 +11,7 @@ function login($log_username,$log_password,$log_page){
 	
 $username = $log_username;
 $pass = $log_password;
-if($log_page=="activate.php"){
+if($log_page=="activate.php" || $log_page="login.php"){
 	$log_page="index.php";
 }
 	if($username && $pass){
