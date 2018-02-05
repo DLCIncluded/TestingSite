@@ -6,9 +6,9 @@ if($_GET['msg']=="register"){
 }elseif($_GET['msg']=="badpass"){
 	echo "You have entered the wrong password <a class='login-button'>try again</a>";	
 }elseif($_GET['msg']=="nouser"){
-	echo "You need to ender a username. <a class='login-button'>Try again</a>";	
+	echo "You need to enter a username. <a class='login-button'>Try again</a>";	
 }elseif($_GET['msg']=="nopass"){
-	echo "You need to ender a password. <a class='login-button'>Try again</a>";	
+	echo "You need to enter a password. <a class='login-button'>Try again</a>";	
 }elseif($_GET['msg']=="usernotexist"){
 	echo "That account does not exist, would you like to register instead? <a class='register-form-button'>Register</a>";	
 }elseif($_GET['msg']=="notactive"){
