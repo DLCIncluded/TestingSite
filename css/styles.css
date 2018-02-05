@@ -43,7 +43,7 @@ ul, li {
 	width:80%;
 	margin: 0 auto;
 	min-height: 100%;
-	margin-bottom: -81px;
+	/*margin-bottom: -81px;*/
 }
 
 #sidebar-left{

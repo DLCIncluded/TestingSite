@@ -3,9 +3,9 @@
 		<?PHP include("playerCheck.php"); ?>
 	</aside><!-- sidebar-right -->
 
-
-</div><!-- / container -->
 <span id="clear"></span>
+</div><!-- / container -->
+
 
 <footer>
 	&copy; Copyright 2018 DLCIncluded 
