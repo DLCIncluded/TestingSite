@@ -12,7 +12,7 @@ if($_GET['msg']=="register"){
 }elseif($_GET['msg']=="usernotexist"){
 	echo "That account does not exist, would you like to register instead? <a class='register-form-button'>Register</a>";	
 }elseif($_GET['msg']=="notactive"){
-	echo "Your account is not activated, please check your email for the acivation email. Or you can <a href='resend.php'>resend email</a>";	
+	echo "Your account is not activated, please check your email for the acivation email. Or if you have not recieved it you can always <a href='checker.php'>play</a> my game... ;)";	
 }
 
 include_once("includes/bottom.php");
