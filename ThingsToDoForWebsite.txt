@@ -1,6 +1,7 @@
 Things to do for website
 
 implement UUID into database
+//added UUID field in Users DB, need to update Register function so it has UUID after mcUsername in sql
 
 UUID check when logging into website, and update database with MC username IF changed
 
