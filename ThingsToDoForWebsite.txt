@@ -1,0 +1,19 @@
+Things to do for website
+
+implement UUID into database
+
+UUID check when logging into website, and update database with MC username IF changed
+
+Python(maybe?) to auto update the mc Pic every hour or so and either pull from sql or json
+
+create the actual whitelist function on the site (admin)
+
+users password reset function/forgot password
+
+contact us page
+
+ban appeal
+
+
+-- later stuff -- 
+forums  or at least comments system
