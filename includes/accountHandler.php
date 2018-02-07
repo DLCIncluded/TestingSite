@@ -56,10 +56,10 @@ include_once("accountFunctions.php");
 														
 														$message = "Hello ".$fName.", Please click this link to activate your account: <a href='http://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode."'>http://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode."</a>.";
 														
-														$headers[] = "MIME-Version: 1.0";
-														$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-														$headers[] = 'To: '.$email;
-														$headers[] = 'From: DLCIncluded Admin <Admin@DLCIncluded.com>';
+														$headers = "From: admin@dlcincluded.com\r\n";
+														$headers .= "Reply-To: admin@dlcincluded.com\r\n";
+														$headers .= "MIME-Version: 1.0\r\n";
+														$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 														
 														mail($email, $subject, $message, implode("\r\n", $headers));
 														header("Location: http://dlcincluded.com/testing/status.php?msg=register");
