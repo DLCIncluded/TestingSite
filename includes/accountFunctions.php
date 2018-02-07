@@ -89,15 +89,15 @@ function activate($username,$code){
 				echo "Successfully activated ".$username;
 				echo " Please click the button in the top right to login.<br><br>";
 				
-				if(mkdir("images/profiles/".$username, 0755)){
-					if(copy("images/default.png","images/profiles/".$username."/profilepic.png")){
-						echo "Successfully created profile folder and setup default profile pic";
-					}else{
-						echo "ERROR:**failed to copy the default profile pic";
-					}
-				}else{
-					echo "ERROR:**failed to create profile directory, please inform an admin or staff member.**";
-				}
+				//if(mkdir("images/profiles/".$username, 0755)){
+					//if(copy("images/default.png","images/profiles/".$username."/profilepic.png")){
+						//echo "Successfully created profile folder and setup default profile pic";
+					//}else{
+						//echo "ERROR:**failed to copy the default profile pic";
+					//}
+				//}else{
+					//echo "ERROR:**failed to create profile directory, please inform an admin or staff member.**";
+				//}
 			} else {
 				echo "An Error Occured please let the Admin know.";
 			}
@@ -160,12 +160,16 @@ function getMCPic($mcUser){
 
 
 function checkMCPic($mcUser,$type){
+	$output_filename_head = "images/mcUsers/".$mcUser."-head.png";
+	$output_filename_body = "images/mcUsers/".$mcUser."-body.png";
 	if($type=="head"){
-		$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
-		$UUIDdata = json_decode($UUID);
-		$id = $UUIDdata->id;
-		$output_filename_head = "images/mcUsers/".$mcUser."-head.png";
+		
 		if(!is_file($output_filename_head)){
+			
+			$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
+			$UUIDdata = json_decode($UUID);
+			$id = $UUIDdata->id;
+			
 			
 			$host = "https://crafatar.com/avatars/$mcUser";
 		
@@ -187,9 +191,12 @@ function checkMCPic($mcUser,$type){
 		}
 		return $output_filename_head;
 	} elseif($type=="body"){
-		
-		$output_filename_body = "images/mcUsers/".$mcUser."-body.png";
+
 		if(!is_file($output_filename_body)){
+			
+			$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
+			$UUIDdata = json_decode($UUID);
+			$id = $UUIDdata->id;
 			
 			$host = "https://crafatar.com/renders/body/$mcUser";
 		
