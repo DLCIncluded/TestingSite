@@ -173,7 +173,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		$page=str_replace('"','\"',$page); 
 		$sql = "Update Pages SET pageData='".$page."' WHERE name='".$name."'"; 
 		if($connection->query($sql) === TRUE){
-			echo "edits were successful for <a href='".$name.".php'>".$name."</a>";
+			echo "Edits were successful for <a href='".$name.".php'>".$name."</a>";
 		}else {
 			echo $sql . "<br>" . $connection->error;
 		}
@@ -187,7 +187,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 			if(unlink($file)){
 			echo "Successfully deleted ".$name." <a href='admin.php'>Reload page</a>";
 			}else{
-				echo "failed to delete the file.. please let the admin know that ".$file." was not deleted successfully...";
+				echo "Failed to delete the file.. please let the admin know that ".$file." was not deleted successfully...";
 			}
 		}else {
 			echo $sql . "<br>" . $connection->error;
@@ -272,7 +272,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		
 	
 	}elseif(isset($edit) && $edit=="true" && ($username=="" || !isset($username)) && ($pass=="" || $pass!="true") && $page=="edit" && ($name=="" || !isset($name))){
-		echo "this is the edit selection page";
+		echo "This is the edit selection page";
 		//*******************************************
 		//*******************************************
 		//********* PAGE EDIT SELECTION**************
@@ -316,7 +316,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 					<button type="submit" name="edit-page-submit" value="edit-page-submit">Submit</button>
 				</form>
 				
-				
+				<br />
 				<?PHP
 				if($name!="home"){
 				?>
