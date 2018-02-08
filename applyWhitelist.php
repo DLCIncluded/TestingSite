@@ -13,8 +13,8 @@ if(isset($_POST['applybtn'])){
 		$sql = "INSERT INTO Whitelist VALUES (NULL, '$mcUsername', '$message', 0)";
 		if($connection->query($sql)){
 			//successfully entered into database now send email to staff members to process
-			//$to = "admin@dlcincluded.com, chj1axr0@dlcincluded.com, myaskill@dlcincluded.com, h2owiz1@dlcincluded.com";
-			$to = "admin@dlcincluded.com";
+			$to = "admin@dlcincluded.com, chj1axr0@dlcincluded.com, myaskill@dlcincluded.com, h2owiz1@dlcincluded.com";
+			//$to = "admin@dlcincluded.com";
 			
 			$subject = $mcUser . " Requested to be Whitelisted";
 			

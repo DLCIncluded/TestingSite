@@ -31,8 +31,8 @@ if($siteLevel>='5'){
 		if($connection->query($sql)){
 
 			//successfully entered into database now send email to staff members to notify it was complete
-			//$to = "admin@dlcincluded.com, chj1axr0@dlcincluded.com, myaskill@dlcincluded.com, h2owiz1@dlcincluded.com";
-			$to = "admin@dlcincluded.com";
+			$to = "admin@dlcincluded.com, chj1axr0@dlcincluded.com, myaskill@dlcincluded.com, h2owiz1@dlcincluded.com";
+			//$to = "admin@dlcincluded.com";
 			$sql1="SELECT * FROM Users WHERE mcUsername='".$mcUser."'";
 			$result1=$connection->query($sql1);
 			if($result1->num_rows == 1){
