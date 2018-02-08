@@ -68,6 +68,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		$banned=$_POST['banned'];
 		$locked=$_POST['locked'];
 		  
+		
 		$sql = "Update Users SET fName='".$fName ."',lName='".$lName."',username='".$username."',email='".$email."',mcUsername='".$mcUsername."',birthday='".$birthday."',bio='".$bio."',authQ='".$authQ."',authA='".$authA."',donator=".$donator.",siteLevel=".$siteLevel.",active=".$active.",banned=".$banned.",locked=".$locked." WHERE id=".$id; 
 		if ($connection->query($sql) === TRUE){ //if the query is successful
 			echo "Applying updates for: ".$_POST['username']." Successful.";

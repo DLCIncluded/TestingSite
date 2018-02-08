@@ -1,4 +1,5 @@
 <?PHP
+ini_set('display_errors', '1');
 session_start();
 include_once("dbConn.php");
 include_once("accountFunctions.php");
@@ -46,24 +47,27 @@ include_once("accountFunctions.php");
 													
 													$activeCode= md5($lName); //making the code for the activation
 													
+													$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUsername");
+													$UUIDdata = json_decode($UUID);
+													$id = $UUIDdata->id;
+													
 													//Inserting the user info into database
-													$sql = "INSERT INTO Users VALUES (NULL,'".$fName ."','".$lName."','".$username."','".$password."','".$email."','".$mcUsername."','".$birthday."','BIO','".$authQ."','".$authA."',0,0,'".$activeCode."',0,0,0)"; 
+													$sql = "INSERT INTO Users VALUES (NULL,'".$fName ."','".$lName."','".$username."','".$password."','".$email."','".$mcUsername."',UUID='".$id."','".$birthday."','BIO','".$authQ."','".$authA."',0,0,'".$activeCode."',0,0,0)"; 
 													
 													if ($connection->query($sql) === TRUE){
-														//if it works, send the activation email
-														//???? Still not working
+														
 														$subject = "Activate your Account on DLCIncluded's Website";
 														
-														$message = "Hello ".$fName.", Please click this link to activate your account: <a href='http://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode."'>http://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode."</a>.";
+														$message = "Hello ".$fName.", Please click this link to activate your account: http://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode;
 														
 														$headers = "From: admin@dlcincluded.com\r\n";
 														$headers .= "Reply-To: admin@dlcincluded.com\r\n";
 														$headers .= "MIME-Version: 1.0\r\n";
 														$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 														
-														mail($email, $subject, $message, implode("\r\n", $headers));
-														header("Location: http://dlcincluded.com/testing/status.php?msg=register");
-														
+														mail($email, $subject, $message, $headers));// this was implode("\r\n", $headers)
+														//header("Location: http://dlcincluded.com/testing/status.php?msg=register");
+														echo "done";
 													} else {
 														Echo "Something has gone seriously wrong, please tell the Admin this(or try again):" . $sql . "<br>" . $connection->error;
 													}

@@ -1,16 +1,17 @@
 <?php
 if(isset($_POST['submit'])){
-    $to = 'h4xxl0rdz@gmail.com, chj1axr0@gmail.com, dlcincluded4@gmail.com'; // this is your Email address
-    $from = $_POST['email']; // this is the sender's Email address
+    $to = 'dlcincluded4@gmail.com'; // this is your Email address h4xxl0rdz@gmail.com, chj1axr0@gmail.com, 
+    //$from = $_POST['email']; // this is the sender's Email address
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $subject = "Form submission";
     //$subject2 = "Copy of your form submission";
-    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
-    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+    $message = "Hello ".$first_name.", Please click this link to activate your account: http://dlcincluded.com/testing/activate.php?username=username&code=code";
+	//$message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    //$message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
 
-$headers = "From: " . strip_tags($_POST['email']) . "\r\n";
-$headers .= "Reply-To: ". strip_tags($_POST['email']) . "\r\n";
+$headers = "From: admin@dlcincluded.com\r\n";
+$headers .= "Reply-To: admin@dlcincluded.com\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
@@ -22,7 +23,7 @@ $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
     }
 ?>
 
-<!DOCTYPE html>
+<html>
 <head>
 <title>Form submission</title>
 </head>
