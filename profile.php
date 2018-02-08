@@ -39,7 +39,11 @@ include_once("includes/top.php");
 
 					<?PHP
 								if($username == $_GET['username']){
-									echo "<a href='editprofile.php'>Edit Your Profile</a>";
+									
+									?>
+									<a href='editprofile.php'>Edit Your Profile</a> <br><br>
+									<a href='applyWhitelist.php'>Apply for Whitelist</a>
+									<?PHP
 								}
 							}
 						}else{
