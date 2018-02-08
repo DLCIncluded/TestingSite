@@ -65,9 +65,9 @@ include_once("accountFunctions.php");
 														$headers .= "MIME-Version: 1.0\r\n";
 														$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 														
-														mail($email, $subject, $message, $headers));// this was implode("\r\n", $headers)
-														//header("Location: http://dlcincluded.com/testing/status.php?msg=register");
-														echo "done";
+														mail($email, $subject, $message, $headers);// this was implode("\r\n", $headers)
+														header("Location: http://dlcincluded.com/testing/status.php?msg=register");
+														//echo "done";
 													} else {
 														Echo "Something has gone seriously wrong, please tell the Admin this(or try again):" . $sql . "<br>" . $connection->error;
 													}

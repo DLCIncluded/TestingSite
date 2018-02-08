@@ -96,12 +96,16 @@ checklogin();
 			<li><a href="#">About</a></li>
 			-->
 			<li><a href="index.php">Home</a></li>
+			
 			<?PHP
 				if(isset($username)){
 			?>
 			<li><a href="profile.php?username=<?PHP echo $username; ?>">Profile</a></li>
 			<?PHP
 			}
+			
+			?>
+			<?PHP
 				$sql = "SELECT * FROM Pages";
 				$result = $connection->query($sql);
 				
