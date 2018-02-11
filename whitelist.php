@@ -42,7 +42,7 @@ if($siteLevel>='5'){
 			}
 			
 			require('includes/MulticraftAPI.php');
-			$api = new MulticraftAPI('http://dlcincluded.com/multicraft/api.php', 'dlcincluded', '+n2DLp2z*mZoBz');
+			$api = new MulticraftAPI('https://dlcincluded.com/multicraft/api.php', 'dlcincluded', '+n2DLp2z*mZoBz');
 			//print_r($api->getServerStatus(1, true));
 			if($api->sendConsoleCommand(1, "whitelist add ".$mcUser)){}
 			
