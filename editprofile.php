@@ -99,7 +99,7 @@ if(isset($username)){
 							</tr>
 						<tbody>
 					</table><br>
-					<input type='submit' name='submitbtn' value='submitbtn' id='submitbtn'>
+					<input type='submit' name='submitbtn' value='Submit Changes' id='submitbtn'>
 					</form>
 			</div>
 
