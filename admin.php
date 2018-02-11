@@ -1,8 +1,8 @@
 <?PHP
 ini_set('display_errors', '1');
 include("includes/top.php");
-require("includes/MulticraftAPI.php");
-$api = new MulticraftAPI('http://dlcincluded.com/multicraft/api.php', 'DLCIncluded', '+n2DLp2z*mZoBz');
+//require("includes/MulticraftAPI.php");
+//$api = new MulticraftAPI('https://dlcincluded.com/multicraft/api.php', 'DLCIncluded', '+n2DLp2z*mZoBz');
 
 
 
@@ -448,14 +448,14 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 					</table>
 					<input type='submit' name='submitbtn' value='submitbtn' id='submitbtn'>
 					</form>
-					
+					<!--
 					<form action='admin.php' method='POST'>
 						<input type='hidden' name='multicraft' value='true'/>
 						<input type='hidden' name='username' value='<?PHP echo $_GET['username']; ?>'/>
 						Create Multicraft Account:(ONLY for TRUSTED people.. gives access to multicraft as a user)
 						<input type='submit' name='mcsubmit' value='GO' id='submitbtn'>
 					</form>
-					
+					-->
 					<a href='admin.php?edit=true&pass=true&username=<?PHP echo $_GET['username']; ?>'>Change Users Password</a>
 					
 					<br><br>
