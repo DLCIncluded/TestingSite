@@ -11,6 +11,9 @@ checklogin();
 <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Russo+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet"> 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -101,10 +104,12 @@ checklogin();
 				if(isset($username)){
 			?>
 			<li><a href="profile.php?username=<?PHP echo $username; ?>">Profile</a></li>
+			
 			<?PHP
 			}
 			
 			?>
+			<li><a href="forum_sections.php">Forums</a></li>
 			<?PHP
 				$sql = "SELECT * FROM Pages";
 				$result = $connection->query($sql);

@@ -1,6 +1,9 @@
 	</content><!-- main-content -->
 	<aside id="sidebar-right">
 		<?PHP include("playerCheck.php"); ?>
+		<div data-simplebar id="chat-box">
+		<?PHP include("chat.php"); ?>
+		<div>
 	</aside><!-- sidebar-right -->
 
 <span id="clear"></span>
