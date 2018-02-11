@@ -11,6 +11,7 @@ $list="";
 				$section_title = $row['title'];
 			}
 		}else{
+			$section_title = "Post not Found";
 			$list = "That section does not exist. Please go back and try again.";
 		}
 		
@@ -20,7 +21,21 @@ $list="";
 			while($row=$result->fetch_assoc()){
 				$id = $row['id'];
 				$thread_title = $row['thread_title'];
-				$list .= "<a href='view_thread.php?id=$id'>$thread_title</a><br><br>";
+				$post_author = $row['post_author'];
+				$date_time = $row['date_time'];
+				$date_time = convert_time($date_time);
+				$status = $row['closed'];
+				if($status == "0"){
+					$status = "Open";
+				}else{
+					$status = "Closed";
+				}
+				$list .= "
+				<div id='posts'>
+					<h3><a href='view_thread.php?id=$id'>$thread_title</a></h3>
+					<p>Started by: $post_author&nbsp;&nbsp;$date_time&nbsp;&nbsp;Status: $status
+				</div>
+				";
 			}
 		}else{
 			$list = "No posts found. You can create one if you'd like!";
@@ -33,14 +48,18 @@ $list="";
 	
 	?>
 	<h1><?PHP echo $section_title;?></h1>
-	<form method="POST" action="new_topic.php">
-		<input type="hidden" name="sid" value="<?PHP echo $sid; ?>"/>
-		<input type="hidden" name="section_title" value="<?PHP echo $section_title; ?>"/>
-		<input type="submit" name="createTopic" value="Create New Topic"/><br><br>
-	</form>
-	<?PHP
-echo $list;
-	
+	<?PHP 
+	if($section_title != "Post not Found"){
+	?>
 
+		<a href="new_post.php?sid=<?PHP echo $sid; ?>&section_title=<?PHP echo $section_title; ?>" id="createTopic" name="createTopic">Create New Post</a><br><br>
+
+	<div id="posts-container">
+	<?PHP
+		echo $list;
+	?>
+	</div>
+	<?PHP
+	}
 include_once("includes/bottom.php");
 ?>

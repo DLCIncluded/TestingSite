@@ -12,12 +12,19 @@ include_once("includes/top.php");
 				while($row=$result->fetch_assoc()){
 					$post_author = $row['post_author'];
 					$post_author_id = $row['post_author_id'];
+					$post_id = $row['id'];
 					$date_time = $row['date_time'];
 					$date_time = strftime("%b %d %Y",strtotime($date_time));//convert to Month ##, YYYY
 					$section_title = $row['section_title'];
 					$section_id = $row['section_id'];
 					$thread_title = $row['thread_title'];
 					$post_body = $row['post_body'];
+					$status = $row['closed'];
+					if($status == '0'){
+						$status = "Open";
+					}else{
+						$status = "Closed";
+					}
 				}
 				
 			}else{
@@ -36,7 +43,8 @@ include_once("includes/top.php");
 				$reply_author = $row['post_author'];
 				$reply_author_id = $row['post_author_id'];
 				$reply_date_time = $row['date_time'];
-				$reply_date_time = strftime("%b %d %Y",strtotime($reply_date_time));//convert to Month ##, YYYY
+				$reply_date_time = convert_time($row['date_time']);
+				//$reply_date_time = strftime("%b %d %Y",strtotime($reply_date_time));//convert to Month ##, YYYY
 				//convert to time ago eventually
 				$reply_post_body = $row['post_body'];
 				
@@ -48,13 +56,11 @@ include_once("includes/top.php");
 			$replies = "There are no replies yet.";
 		}
 		
-	}else{
-		echo "Please <a href='#' class='login-button'>Login</a> to view this page.";
-	}
+	
 	
 	?>
 	<h1 id="topic_title"><?PHP echo $thread_title; ?></h1>
-	<div id="author_div">Topic started by: <a href='profile.php?username=<?PHP echo $post_author; ?>'><?PHP echo $post_author; ?></a> &nbsp; &nbsp; &nbsp; &nbsp;Created on: <?PHP echo $date_time; ?>
+	<div id="author_div">Topic started by: <a href='profile.php?username=<?PHP echo $post_author; ?>'><?PHP echo $post_author; ?></a> &nbsp; &nbsp;Created on: <?PHP echo $date_time; ?> &nbsp; &nbsp;Posted in <a href="section.php?id=<?PHP echo $section_id; ?>"><?PHP echo $section_title; ?></a> <span style="float:right;">Status: <?PHP echo $status; ?></span>
 	<hr/>
 	</div>
 	
@@ -62,22 +68,42 @@ include_once("includes/top.php");
 	<hr/>
 	</div>
 	<div id="replies"><?PHP echo $replies; ?></div>
-	<br><br>
-	<form action="includes/postHandler.php" method="post" name="reply">
-			
-		<textarea name="post_body" placeholder=""></textarea><br><br>
-		<input type="submit" name="reply" value="Reply to Post" />
-		
-		<input type="hidden" name="orig_topic_id" value="<?PHP echo $thread_id; ?>" />
-		<input type="hidden" name="section_id" value="<?PHP echo $section_id; ?>" />
-		<input type="hidden" name="post_title" value="<?PHP echo $thread_title; ?>" />
-		<input type="hidden" name="section_title" value="<?PHP echo $section_title; ?>" />
-		<input type="hidden" name="post_type" value="b" /><!-- a for new, b for reply -->
-		
+	<br>
+	<br>
+	<?PHP
+		if($post_author == $username && $status == 'Open'){
+	?>
+		<a href="close_thread.php?id=<?PHP echo $post_id; ?>" style="float:right;">Close this thread?</a>
+	<?PHP
+		}
+	?>
+	<br>
+	<br>
+	<?PHP
+		if($status == "Open"){
+	?>
+			<link rel="stylesheet" type="text/css" href="trix/trix.css">
+			<script type="text/javascript" src="trix/trix.js"></script>
+			<form action="includes/postHandler.php" method="post" name="reply">
+					
+				<!--<textarea name="post_body" placeholder="Reply..." rows="7" cols="40" ></textarea><br><br>-->
+				<input id="x" name="post_body" type="hidden" name="content">
+				<trix-editor input="x"></trix-editor><a href="https://github.com/basecamp/trix" style="float:right; font-size:8pt" target="_blank">Powered by Trix</a>
+				<input type="submit" name="reply" value="Reply to Post" />
+				
+				<input type="hidden" name="orig_topic_id" value="<?PHP echo $thread_id; ?>" />
+				<input type="hidden" name="section_id" value="<?PHP echo $section_id; ?>" />
+				<input type="hidden" name="post_title" value="<?PHP echo $thread_title; ?>" />
+				<input type="hidden" name="section_title" value="<?PHP echo $section_title; ?>" />
+				<input type="hidden" name="post_type" value="b" /><!-- a for new, b for reply -->
+				
 
-	</form>
+			</form>
 	
 	<?PHP
-
+		}
+}else{
+		echo "Please <a href='#' class='login-button'>Login</a> to view this page.";
+	}
 include_once("includes/bottom.php");
 ?>
