@@ -42,8 +42,15 @@ include_once("includes/top.php");
 									
 									?>
 									<a href='editprofile.php'>Edit Your Profile</a> <br><br>
+									
+									<?PHP
+									$sql1="SELECT * FROM Whitelist WHERE mcUsername='".$mcUsername."'";
+									$result1=$connection->query($sql1);
+									if($result1->num_rows == 0){
+									?>
 									<a href='applyWhitelist.php'>Apply for Whitelist</a>
 									<?PHP
+									}
 								}
 							}
 						}else{
