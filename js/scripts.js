@@ -74,10 +74,8 @@
 	}
 	
 	function sendMessage() {
-		var formData = {
-            'chat'              : $('input[name=chat]').val(),
-            'mcUsername'        : $('input[name=mcUsername]').val()
-        };
+		event.preventDefault();
+		var formData = $(form).serialize();
 		jQuery.ajax({
 		url: "chat.php",
 		data: formData,
@@ -94,4 +92,31 @@
 		error:function (){}
 		});
 	}
+	$(document).ready(function() {
+		$('form.ajax').on('submit', function() {
+			var chat = 
+			jQuery.ajax({
+			url: "includes/sendChat.php",
+			data: {
+				chat:$("#chat").val(),
+				mcUsername:$("#mcUsername").val()
+			},
+			type: "POST",
+			success:function(data){
+				//console.log(data);
+				if(data=="success"){
+					$("#chat").addClass("success");
+					$("#chat").removeClass("fail");
+				}else{
+					$("#chat").removeClass("success");
+					$("#chat").addClass("fail");
+				}
+			},
+			error:function (){}
+			});
+			return false;
+		});
+	});
+	
+
 	

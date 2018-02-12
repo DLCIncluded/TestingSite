@@ -3,6 +3,19 @@
 		<?PHP include("playerCheck.php"); ?>
 		<div data-simplebar id="chat-box">
 		<?PHP include("chat.php"); ?>
+		<?PHP
+		if(isset($username)){
+		?>
+		<form action="sendChat.php" method="POST" class="ajax">
+			<input type="hidden" id="mcUsername" name="mcUsername" value="<?PHP echo $mcUsername; ?>" />
+			<input type="text" id="chat" name="chat" placeholder="NOT IMPLEMENTED YET"/>
+			<input type="submit" name="msgBtn" value="Send Message" />
+		</form>
+		<?PHP
+		}else{
+			echo "<a class='login-button'>Login</a> to send chat messages.";
+		}
+		?>
 		<div>
 	</aside><!-- sidebar-right -->
 
