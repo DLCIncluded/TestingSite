@@ -111,7 +111,7 @@ checklogin();
 			?>
 			<li><a href="forum_sections.php">Forums</a></li>
 			<?PHP
-				$sql = "SELECT * FROM Pages";
+				$sql = "SELECT * FROM Pages ORDER BY name";
 				$result = $connection->query($sql);
 				
 				if($result->num_rows > 0){ 
