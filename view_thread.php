@@ -71,7 +71,7 @@ include_once("includes/top.php");
 	<br>
 	<br>
 	<?PHP
-		if($post_author == $username && $status == 'Open'){
+		if(($post_author == $username || $siteLevel >= 5 ) && $status == 'Open'){
 	?>
 		<a href="close_thread.php?id=<?PHP echo $post_id; ?>" style="float:right;">Close this thread?</a>
 	<?PHP

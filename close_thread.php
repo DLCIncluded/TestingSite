@@ -14,7 +14,7 @@ include_once("includes/top.php");
 		}else{
 			$post_author ='';
 		}
-		if(($username == $post_author) || $siteLevel < 5 ){
+		if(($username == $post_author) || $siteLevel >= 5 ){
 		?>
 			Are you 100% sure you wish to close this topic? It can only be reopened by an admin so please choose this carefully.
 			If you are sure you want this closed please click here: <a href="close_thread.php?id=<?PHP echo $_GET['id'];?>&confirm=true">Close thread</a>
@@ -34,7 +34,7 @@ include_once("includes/top.php");
 		}else{
 			$post_author ='';
 		}
-		if(($username == $post_author) || $siteLevel < 5 ){
+		if(($username == $post_author) || $siteLevel >= 5 ){
 			$sql = "UPDATE forum_posts SET closed='1' WHERE id='".$post_id."'";
 			if($connection->query($sql) === true){
 				echo "Successfully closed post \"".$post_title."\"";
