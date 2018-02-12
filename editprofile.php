@@ -98,9 +98,11 @@ if(isset($username)){
 								<td id='users-cell'><input type='text' size='10' name='authA' value='<?PHP echo $row['authA']; ?>'/></td>
 							</tr>
 						<tbody>
-					</table><br>
+					</table>
+					<a href="resetPass.php">Reset Password</a><br><br>
 					<input type='submit' name='submitbtn' value='Submit Changes' id='submitbtn'>
 					</form>
+					
 			</div>
 
 			

@@ -52,7 +52,7 @@ include_once("accountFunctions.php");
 													$id = $UUIDdata->id;
 													
 													//Inserting the user info into database
-													$sql = "INSERT INTO Users VALUES (NULL,'".$fName ."','".$lName."','".$username."','".$password."','".$email."','".$mcUsername."',UUID='".$id."','".$birthday."','BIO','".$authQ."','".$authA."',0,0,'".$activeCode."',0,0,0)"; 
+													$sql = "INSERT INTO Users VALUES (NULL,'".$fName ."','".$lName."','".$username."','".$password."','".$email."','".$mcUsername."',UUID='".$id."','".$birthday."','BIO','".$authQ."','".$authA."',0,0,'".$activeCode."',0,0,0,0)"; 
 													
 													if ($connection->query($sql) === TRUE){
 														

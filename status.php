@@ -1,10 +1,12 @@
 <?PHP
 include_once("includes/top.php");
-
+?>
+<title>DLCIncluded's Server</title>
+<?PHP
 if($_GET['msg']=="register"){
 	Echo "You have successfully been registered, Please check your email to activate your account.(you might have to check your spam folder)";
 }elseif($_GET['msg']=="badpass"){
-	echo "You have entered the wrong password <a class='login-button'>try again</a>";	
+	echo "You have entered the wrong password <a class='login-button'>try again</a> or <a href='forgotPass.php'>Forgot Password</a>";	
 }elseif($_GET['msg']=="nouser"){
 	echo "You need to enter a username. <a class='login-button'>Try again</a>";	
 }elseif($_GET['msg']=="nopass"){
@@ -17,6 +19,8 @@ if($_GET['msg']=="register"){
 	echo "Thank you for applying for the server, we will contact you soon with information on your application.";	
 }elseif($_GET['msg']=="whitelist"){
 	echo "The user has been added to the whitelist, and notified via email.";	
+}elseif($_GET['msg']=="reset"){
+	echo "Your password has been reset successfully.";	
 }
 
 include_once("includes/bottom.php");

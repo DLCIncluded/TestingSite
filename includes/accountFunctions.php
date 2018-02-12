@@ -35,7 +35,11 @@ if($log_page=="activate.php" || $log_page="login.php"){
 									$_SESSION['lName'] = $row['lName'];
 									$_SESSION['mcUsername'] = $row['mcUsername'];
 									$_SESSION['siteLevel'] = $row['siteLevel'];
-									header("Location: ../".$log_page);
+									if($row['forceReset'] != 1){
+										header("Location: ../".$log_page);
+									}else{
+										header("Location: ../resetPass.php");
+									}
 								}else{
 									header("Location: ../status.php?msg=badpass");
 								}
