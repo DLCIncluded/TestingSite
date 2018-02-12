@@ -73,3 +73,25 @@
 		});
 	}
 	
+	function sendMessage() {
+		var formData = {
+            'chat'              : $('input[name=chat]').val(),
+            'mcUsername'        : $('input[name=mcUsername]').val()
+        };
+		jQuery.ajax({
+		url: "chat.php",
+		data: formData,
+		type: "POST",
+		success:function(data){
+			if(data=="success"){
+				$("#chat").addClass("success");
+				$("#chat").removeClass("fail");
+			}else{
+				$("#chat").removeClass("success");
+				$("#chat").addClass("fail");
+			}
+		},
+		error:function (){}
+		});
+	}
+	

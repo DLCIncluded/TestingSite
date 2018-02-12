@@ -21,19 +21,24 @@ if ($response['success']) {
 	}
 	//echo '<pre>'; var_dump($response);
 }
-if(isset($_POST['message'])){
-	if($api->sendConsoleCommand(1, "say ".$_POST['message'])){
-		echo "message sent";
+if(isset($_POST['chat'])){
+	
+	if($api->sendConsoleCommand(1, "say <".$_POST['mcUsername']."> ".$_POST['chat'])){
+		echo "success";
 	}else{
-		echo "<br>Failed to send message";
+		echo "failed";
 	}
 }
 
-
+if(isset($username)){
 ?>
-
-<form action="chat.php" method="POST">
-	<input type="text" name="message" placeholder="NOT IMPLEMENTED YET"/>
-	<input type="submit" name="msgBtn" value="Send Message" disabled />
+<form onSubmit="sendMessage()" action="chat.php" method="POST">
+	<input type="hidden" id="mcUsername" name="mcUsername" value="<?PHP echo $mcUsername; ?>" />
+	<input type="text" id="chat" name="chat" placeholder="NOT IMPLEMENTED YET"/>
+	<input type="submit" name="msgBtn" value="Send Message" onSubmit="sendMessage()" />
 </form>
-
+<?PHP
+}else{
+	echo "<a class='login-button'>Login</a> to send chat messages.";
+}
+?>
