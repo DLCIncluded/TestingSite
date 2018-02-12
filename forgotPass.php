@@ -24,8 +24,11 @@ if(isset($_POST['email'])){
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			
 			mail($email, $subject, $message, $headers);
+			echo "Email sent with instructions to reset your password.";
+		}else{
+			echo $connection->error;
 		}
-		echo "Email sent with instructions to reset your password.";
+		
 	}else{
 		echo "No account on record for that email address. Please try again or contact the admin. ".$connection->error;
 	}
