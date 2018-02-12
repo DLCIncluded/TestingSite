@@ -440,16 +440,22 @@ pre{
 	border: 1px solid #777;
 	white-space: pre-wrap;
 }
+
 #chat-box {
 	background: rgba(157, 157, 157, 0.5);
-	height:500px;
 	width: 100%;
-	overflow:hidden;
 	padding-left:10px;
 	padding-top:10px;
 	padding-bottom:10px;
 	border-radius:5px 5px;
 }
+
+#chat-container {
+	height:500px;
+	width: 100%;
+	overflow:hidden;
+}
+
 .simplebar-content{
 	padding-right:0 !important;
 	margin-right:0 !important;

@@ -21,14 +21,5 @@ if ($response['success']) {
 	}
 	//echo '<pre>'; var_dump($response);
 }
-
-
-	if(isset($_POST['chat']) && $_POST['chat'] != ''){
-		if($api->sendConsoleCommand(1, "say <".$_POST['mcUsername']."> ".$_POST['chat'])){
-			echo "success";
-		}else{
-			echo "failed";
-		}
-	}
 	
 ?>

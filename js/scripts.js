@@ -73,25 +73,6 @@
 		});
 	}
 	
-	function sendMessage() {
-		event.preventDefault();
-		var formData = $(form).serialize();
-		jQuery.ajax({
-		url: "chat.php",
-		data: formData,
-		type: "POST",
-		success:function(data){
-			if(data=="success"){
-				$("#chat").addClass("success");
-				$("#chat").removeClass("fail");
-			}else{
-				$("#chat").removeClass("success");
-				$("#chat").addClass("fail");
-			}
-		},
-		error:function (){}
-		});
-	}
 	$(document).ready(function() {
 		$('form.ajax').on('submit', function() {
 			var chat = 
@@ -105,18 +86,30 @@
 			success:function(data){
 				//console.log(data);
 				if(data=="success"){
-					$("#chat").addClass("success");
-					$("#chat").removeClass("fail");
+					$(".simplebar-content").load('chat.php');
+					$("#chat").val("");
 				}else{
-					$("#chat").removeClass("success");
-					$("#chat").addClass("fail");
+					$(".simplebar-content").load('chat.php');
+					$("#chat").val("");
 				}
 			},
 			error:function (){}
 			});
 			return false;
 		});
+		$(".simplebar-content").scrollTop($(".simplebar-content")[0].scrollHeight);
+		//$(".simplebar-content").animate({scrollTop:$(".simplebar-content")[0].scrollHeight}, 1000);
 	});
+	
+
+	
+	$(document).ready(function(){
+		$(".simplebar-content").load('chat.php');
+        setInterval(function() {
+			$(".simplebar-content").scrollTop($(".simplebar-content")[0].scrollHeight);
+            $(".simplebar-content").load('chat.php');
+        }, 10000);
+    });
 	
 
 	
