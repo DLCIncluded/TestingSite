@@ -11,6 +11,8 @@ function time_elapsed_string($datetime) {
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
+	//echo '<pre>'; return var_dump(($diff->d);
+	
     $diff->w = floor($diff->d / 7);
     $diff->d -= $diff->w * 7;
 
@@ -32,15 +34,29 @@ function time_elapsed_string($datetime) {
         }
     }
 	
+	
 	if($diff->d >= 1){
 		$string = array_slice($string, 0, 1);
+		//echo "older";
 	} else {
 		$string = array_slice($string, 0, 2);
+		//echo "not older";
 	}
-
+	//echo $diff->d;
+    //if (!$full) $string = array_slice($string, 0, 2);
+	/*
+	if ($string <= strtotime('-24 hours')) {
+		$string = array_slice($string, 0, 1);
+		echo "older";
+	} else {
+		$string = array_slice($string, 0, 2);
+		echo "not older";
+	}*/
+	
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
-$timestamp = "2018-02-10 15:52:13";
+//$timestamp = "2018-02-10 15:52:13";
+$timestamp = "@1518422405";
 echo time_elapsed_string($timestamp);
 ?>

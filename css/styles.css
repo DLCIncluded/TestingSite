@@ -440,7 +440,6 @@ pre{
 	border: 1px solid #777;
 	white-space: pre-wrap;
 }
-
 #chat-box {
 	background: rgba(157, 157, 157, 0.5);
 	width: 100%;
@@ -449,15 +448,16 @@ pre{
 	padding-bottom:10px;
 	border-radius:5px 5px;
 }
-
 #chat-container {
 	height:500px;
 	width: 100%;
 	overflow:hidden;
 }
-
+.simplebar-scroll-content {
+	padding-right: 18px !important;
+}
 .simplebar-content{
-	padding-right:0 !important;
+	/*padding-bottom:0 !important;*/
 	margin-right:0 !important;
 }
 
@@ -465,4 +465,19 @@ pre{
 	border-bottom:1px solid white;
 	margin-bottom:4px;
 	padding-bottom:4px;
+}
+#msg-box {
+	padding-top: 5px;
+}
+
+#chat-name {
+	font-size:12pt;
+}
+
+#chat-msg {
+	font-size:12pt;
+}
+
+#chat-time {
+	font-size:10pt;
 }

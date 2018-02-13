@@ -227,7 +227,7 @@ function checkMCPic($mcUser,$type){
 
 	}
 
-	function convert_time($datetime) {
+	function convert_time($datetime,$short=false) {
 		$now = new DateTime;
 		$ago = new DateTime($datetime);
 		$diff = $now->diff($ago);
@@ -251,11 +251,14 @@ function checkMCPic($mcUser,$type){
 				unset($string[$key]);
 			}
 		}
-		
-		if($diff->d >= 1){
+		if($short == false){
+			if($diff->d >= 1){
+				$string = array_slice($string, 0, 1);
+			} else {
+				$string = array_slice($string, 0, 2);
+			}
+		}else{
 			$string = array_slice($string, 0, 1);
-		} else {
-			$string = array_slice($string, 0, 2);
 		}
 
 		return $string ? implode(', ', $string) . ' ago' : 'just now';

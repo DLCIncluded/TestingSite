@@ -1,4 +1,5 @@
 	</content><!-- main-content -->
+	
 	<aside id="sidebar-right">
 		<?PHP include("playerCheck.php"); ?>
 		<div id="chat-box">
@@ -11,8 +12,8 @@
 				?>
 				<form action="sendChat.php" method="POST" class="ajax">
 					<input type="hidden" id="mcUsername" name="mcUsername" value="<?PHP echo $mcUsername; ?>" />
-					<input type="text" id="chat" name="chat" placeholder="NOT IMPLEMENTED YET"/>
-					<input type="submit" name="msgBtn" value="Send Message" />
+					<input type="text" id="chat" name="chat" style="width:95%" placeholder="Message..."/>
+					<input type="submit" id="msgBtn" name="msgBtn" value="Send Message" />
 				</form>
 				<?PHP
 				}else{

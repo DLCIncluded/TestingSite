@@ -86,30 +86,50 @@
 			success:function(data){
 				//console.log(data);
 				if(data=="success"){
-					$(".simplebar-content").load('chat.php');
-					$("#chat").val("");
+					$(".simplebar-content").delay(500).load('chat.php');
+					$('.simplebar-scroll-content').delay(510).animate({ scrollTop: 10000 }, 2000);
+					$('#chat').val('');
 				}else{
-					$(".simplebar-content").load('chat.php');
-					$("#chat").val("");
+					$(".simplebar-content").delay(500).load('chat.php');
+					$('.simplebar-scroll-content').delay(510).animate({ scrollTop: 10000 }, 2000);
+					$('#chat').val('');
 				}
 			},
 			error:function (){}
 			});
 			return false;
 		});
-		$(".simplebar-content").scrollTop($(".simplebar-content")[0].scrollHeight);
-		//$(".simplebar-content").animate({scrollTop:$(".simplebar-content")[0].scrollHeight}, 1000);
 	});
-	
-
-	
 	$(document).ready(function(){
+		console.log("loading chat.php from js");
 		$(".simplebar-content").load('chat.php');
-        setInterval(function() {
-			$(".simplebar-content").scrollTop($(".simplebar-content")[0].scrollHeight);
-            $(".simplebar-content").load('chat.php');
-        }, 10000);
-    });
+
+		setInterval(function(){
+    		$(".simplebar-content").load('chat.php'); 
+     	},10000);
+
+		$(".simplebar-content").attr('id', 'simplebar-content');
+
+		$('.simplebar-scroll-content').animate({ scrollTop: 10000 }, 2000);
+		
+		//$('#msgBtn').click(function(){
+       // 	$('#chat').val('');
+    	//});
+		
+		// all the BS that ive tried
+		//$(".simplebar-content").attr('id', 'simplebar-content');
+
+		//$('.simplebar-scroll-content').animate({ scrollTop: $("#end").offset().top }, 2000); 
+			
+		//console.log($("#end").offset().top);
+		//$('#msgBtn').click(function(){
+        //	$('#chat').val('');
+    	//});
+		
+		//$(".simplebar-scroll-content").animate({ scrollTop: $('.simplebar-scroll-content').prop("scrollHeight")}, 1000);
+		//$(".simplebar-scroll-content").scrollTo("max", 800);
+
+	});
 	
 
 	

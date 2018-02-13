@@ -12,8 +12,7 @@ if(isset($_POST['description'])){$description = $_POST['description'];}
 if(isset($_POST['ordered'])){$ordered = $_POST['ordered'];}
 $post_author = $_SESSION['username'];
 $user_id = $_SESSION['id'];
-
-//echo $post_author ." ".$post_title ." ".$post_body ." ".$section_id ." ".$section_title ." ".$user_id;
+echo $post_author ." ".$post_title ." ".$post_body ." ".$section_id ." ".$section_title ." ".$user_id;
 	if(isset($_SESSION['username'])){
 		if($post_type == 'a'){//handle new post
 			if(isset($post_author) && isset($post_title) && isset($post_body) && isset($section_id) && isset($section_title) && isset($user_id)){
