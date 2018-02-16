@@ -2,6 +2,7 @@
 	
 	<aside id="sidebar-right">
 		<?PHP include("playerCheck.php"); ?>
+		<!--
 		<div id="chat-box">
 			<div data-simplebar id="chat-container">
 			<?PHP //include("chat.php"); ?>
@@ -22,6 +23,7 @@
 				?>		
 			</div>
 		</div>
+		-->
 	</aside><!-- sidebar-right -->
 
 <span id="clear"></span>

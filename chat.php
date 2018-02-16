@@ -2,9 +2,10 @@
 ini_set('display_errors', '1');
 require("includes/MulticraftAPI.php");
 include_once("includes/accountFunctions.php");
-$api = new MulticraftAPI('https://dlcincluded.com/multicraft/api.php', 'DLCIncluded', '+n2DLp2z*mZoBz');
+$api = new MulticraftAPI('https://multicraft.dlcincluded.com/api.php', 'DLCIncluded', '4mA4kC8Lnz3KGn');
 
 $response = $api->getServerChat(1);
+//echo "<pre>".var_dump($response);
 
 if ($response['success']) {
 	$users = $response["data"];
@@ -70,6 +71,6 @@ if ($response['success']) {
 	?>
 	<?PHP
 	//echo '<pre>'; var_dump($response);
-}
+} else { echo "failed"; }
 	
 ?>

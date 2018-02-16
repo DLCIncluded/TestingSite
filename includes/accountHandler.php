@@ -58,7 +58,7 @@ include_once("accountFunctions.php");
 														
 														$subject = "Activate your Account on DLCIncluded's Website";
 														
-														$message = "Hello ".$fName.", Please click this link to activate your account: http://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode;
+														$message = "Hello ".$fName.", please click this link (or copy into your address bar) to activate your account: https://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode;
 														
 														$headers = "From: admin@dlcincluded.com\r\n";
 														$headers .= "Reply-To: admin@dlcincluded.com\r\n";

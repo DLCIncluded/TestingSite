@@ -22,6 +22,7 @@ checklogin();
 <link href="css/stars.css" rel="stylesheet"> 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.12.1/ui/widget.min.js"></script>
 <script src="js/scripts.js"></script>
 
 </head>
@@ -29,6 +30,32 @@ checklogin();
 
 <body>
 
+<div class="chat-wrap">
+	<div class="chat-container">
+		<div id="chat-pullout" class="chat-pullout">
+			<div data-simplebar id="chat-container">
+			
+			</div>
+			<div id="msg-box">
+				<?PHP
+				if(isset($username)){
+				?>
+				<form action="sendChat.php" method="POST" class="ajax">
+					<input type="hidden" id="mcUsername" name="mcUsername" value="<?PHP echo $mcUsername; ?>" />
+					<input type="text" id="chat" name="chat" style="width:95%" placeholder="Message..."/>
+					<input type="submit" id="msgBtn" name="msgBtn" value="Send Message" />
+				</form>
+				<?PHP
+				}else{
+					echo "<a class='login-button'>Login</a> to send chat messages.";
+				}
+				?>		
+			</div>
+		</div>
+	</div>
+</div>
+
+<button id="chatbtn">Chat</button>
 
 	<?PHP
 	if (!isset($username)) { //if not logged in give the login form &&|| reg form

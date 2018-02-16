@@ -99,18 +99,24 @@
 			});
 			return false;
 		});
-	});
-	$(document).ready(function(){
-		console.log("loading chat.php from js");
-		$(".simplebar-content").load('chat.php');
-
+		$("#chatbtn").click(function(){
+    			$(".chat-wrap").toggle( "slide" );
+    			$(".simplebar-content").load('chat.php');
+    			$('.simplebar-scroll-content').animate({ scrollTop: 10000 }, 2000);
+  		});
+		
 		setInterval(function(){
     		$(".simplebar-content").load('chat.php'); 
      	},10000);
+	});
+	//$(document).ready(function(){
+		//console.log("loading chat.php from js");
+		//$(".simplebar-content").load('chat.php');
 
-		$(".simplebar-content").attr('id', 'simplebar-content');
 
-		$('.simplebar-scroll-content').animate({ scrollTop: 10000 }, 2000);
+		//$(".simplebar-content").attr('id', 'simplebar-content');
+
+		
 		
 		//$('#msgBtn').click(function(){
        // 	$('#chat').val('');
@@ -129,7 +135,7 @@
 		//$(".simplebar-scroll-content").animate({ scrollTop: $('.simplebar-scroll-content').prop("scrollHeight")}, 1000);
 		//$(".simplebar-scroll-content").scrollTo("max", 800);
 
-	});
+	//});
 	
 
 	

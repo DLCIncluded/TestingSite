@@ -1,3 +1,7 @@
+*:focus {
+	outline: none;
+}
+
 a {
 	text-decoration:none;
 }
@@ -36,7 +40,7 @@ header h1 {
 }
 
 .login-button {
-
+cursor: pointer;
 }
 
 #container{
@@ -440,6 +444,43 @@ pre{
 	border: 1px solid #777;
 	white-space: pre-wrap;
 }
+.chat-wrap {
+	width: 25%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	padding-top: 5px;
+	background: #1d1d1d;
+	display: none;
+	border-left: 1px solid #5bc1ff;
+	border-bottom: 1px solid #5bc1ff;
+	border-radius:0px 0px 0px 5px
+	
+}
+#chatbtn {
+	position: absolute;
+	top: 25px;
+	right: -16px;
+	padding: 10px 20px;
+	text-align: center;
+	color: white;
+	transform: rotate(-90deg);
+	background-color: #9D9D9D;
+	border-top: 1px solid #5bc1ff;
+	border-left: 1px solid #5bc1ff;
+	border-right: 1px solid #5bc1ff;
+	border-bottom:none;
+	border-radius:5px 5px 0px 0px
+}
+
+#chatbtn:hover {
+    background-color: #6f6f6f;
+	cursor:pointer;
+}
+	
+}
+
 #chat-box {
 	background: rgba(157, 157, 157, 0.5);
 	width: 100%;
@@ -463,8 +504,8 @@ pre{
 
 #message {
 	border-bottom:1px solid white;
-	margin-bottom:4px;
-	padding-bottom:4px;
+	margin-bottom:7px;
+	padding-bottom:7px;
 }
 #msg-box {
 	padding-top: 5px;
