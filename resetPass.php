@@ -9,7 +9,7 @@ if(isset($_POST['force'])){
 		$sql = "SELECT * FROM Users WHERE username='".$username."'";
 		$result = $connection->query($sql);
 		if($result->num_rows == 1){
-			$fname = $_SESSION['fName'];
+			$fName = $_SESSION['fName'];
 			
 			$salt = md5($fName); //Create Salt for password crypt
 			$password = crypt($pass1, '$2a$07$'.$salt.'$'); //Encrypt password using blowfish + salt just created
@@ -29,7 +29,7 @@ if(isset($_POST['force'])){
 	}
 }
 
-if(isset($_POST['no-force'])){
+if(isset($_POST['noForce'])){
 	$oldPass = $_POST['oldPass'];
 	$pass1 = $_POST['newPass1'];
 	$pass2 = $_POST['newPass2'];
@@ -40,8 +40,8 @@ if(isset($_POST['no-force'])){
 		if($result->num_rows == 1){
 			$fname = $_SESSION['fName'];
 			while($row = $result->fetch_assoc()){
-				$password_hash = $row['password'];
-				if(crypt($pass1, $password_hash) == $password_hash) {
+				$passwordHash = $row['password'];
+				if(crypt($pass1, $passwordHash) == $passwordHash) {
 					$salt = md5($fName); //Create Salt for password crypt
 					$password = crypt($pass1, '$2a$07$'.$salt.'$'); //Encrypt password using blowfish + salt just created
 					
@@ -71,8 +71,8 @@ if(isset($username) && $username != ""){ //if logged in
 		}
 		if($forced == '0'){ // this is not a forced reset
 		?>
-			<form action="resetPass.php" method="POST">
-				<input type="hidden" name="no-force" value="true" />
+			<form action="resetPass.php" id="reset" method="POST">
+				<input type="hidden" name="noForce" value="true" />
 				<input type="password" name="oldPass" placeholder="Old Pass" /><br>
 				<input type="password" name="newPass1" placeholder="New Pass" /><br>
 				<input type="password" name="newPass2" placeholder="Repeat Pass" /><br>
@@ -81,7 +81,7 @@ if(isset($username) && $username != ""){ //if logged in
 		<?PHP
 		}else{//force reset
 		?>
-			<form action="resetPass.php" method="POST" name="force">
+			<form action="resetPass.php" id="reset" method="POST" name="force">
 				<input type="hidden" name="force" value="true" />
 				<input type="password" name="newPass1" placeholder="New Pass" /><br>
 				<input type="password" name="newPass2" placeholder="Repeat Pass" /><br>

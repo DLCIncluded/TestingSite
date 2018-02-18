@@ -3,6 +3,7 @@ ini_set('display_errors', '1');
 session_start();
 include_once("dbConn.php");
 include_once("accountFunctions.php");
+include_once("mailFunctions.php");
 
 
 		//*******************************************
@@ -56,17 +57,8 @@ include_once("accountFunctions.php");
 													
 													if ($connection->query($sql) === TRUE){
 														
-														$subject = "Activate your Account on DLCIncluded's Website";
-														
-														$message = "Hello ".$fName.", please click this link (or copy into your address bar) to activate your account: https://dlcincluded.com/testing/activate.php?username=".$username."&code=".$activeCode;
-														
-														$headers = "From: admin@dlcincluded.com\r\n";
-														$headers .= "Reply-To: admin@dlcincluded.com\r\n";
-														$headers .= "MIME-Version: 1.0\r\n";
-														$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-														
-														mail($email, $subject, $message, $headers);// this was implode("\r\n", $headers)
-														header("Location: http://dlcincluded.com/testing/status.php?msg=register");
+														registerMail($email,$fName,$username,$activeCode);
+														header("Location: http://dlcincluded.com/status.php?msg=register");
 														//echo "done";
 													} else {
 														Echo "Something has gone seriously wrong, please tell the Admin this(or try again):" . $sql . "<br>" . $connection->error;

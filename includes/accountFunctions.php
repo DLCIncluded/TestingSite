@@ -7,12 +7,12 @@ include_once("dbConn.php");
 		//*******************************************
 		//*******************************************
 
-function login($log_username,$log_password,$log_page){
+function login($logUsername,$logPassword,$logPage){
 	
-$username = $log_username;
-$pass = $log_password;
-if($log_page=="activate.php" || $log_page="login.php"){
-	$log_page="index.php";
+$username = $logUsername;
+$pass = $logPassword;
+if($logPage=="activate.php" || $logPage="login.php"){
+	$logPage="index.php";
 }
 	if($username && $pass){
 	  
@@ -25,9 +25,9 @@ if($log_page=="activate.php" || $log_page="login.php"){
 					if($result->num_rows == 1){
 						while($row = $result->fetch_assoc()){
 							$username = $row['username'];
-							$password_hash = $row['password'];
+							$passwordHash = $row['password'];
 							if($row['active']=="1"){
-								if(crypt($pass, $password_hash) == $password_hash) {
+								if(crypt($pass, $passwordHash) == $passwordHash) {
 								//valid password
 									$_SESSION['username'] = $username;
 									$_SESSION['id'] = $row['id'];
@@ -36,7 +36,7 @@ if($log_page=="activate.php" || $log_page="login.php"){
 									$_SESSION['mcUsername'] = $row['mcUsername'];
 									$_SESSION['siteLevel'] = $row['siteLevel'];
 									if($row['forceReset'] != 1){
-										header("Location: ../".$log_page);
+										header("Location: ../".$logPage);
 									}else{
 										header("Location: ../resetPass.php");
 									}
@@ -112,7 +112,7 @@ function activate($username,$code){
 	}
 }
 
-function checklogin(){
+function checkLogin(){
 	if(isset($_SESSION['username'])){
 		$GLOBALS['username']=$_SESSION['username'];
 		$GLOBALS['id']=$_SESSION['id'];
@@ -164,11 +164,11 @@ function getMCPic($mcUser){
 
 
 function checkMCPic($mcUser,$type){
-	$output_filename_head = "images/mcUsers/".$mcUser."-head.png";
-	$output_filename_body = "images/mcUsers/".$mcUser."-body.png";
+	$outputFilenameHead = "images/mcUsers/".$mcUser."-head.png";
+	$outputFilenameBody = "images/mcUsers/".$mcUser."-body.png";
 	if($type=="head"){
 		
-		if(!is_file($output_filename_head)){
+		if(!is_file($outputFilenameHead)){
 			
 			$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
 			$UUIDdata = json_decode($UUID);
@@ -188,15 +188,15 @@ function checkMCPic($mcUser,$type){
 			$result = curl_exec($ch);
 			curl_close($ch);
 
-			$fp = fopen($output_filename_head, 'w');
+			$fp = fopen($outputFilenameHead, 'w');
 			fwrite($fp, $result);
 			fclose($fp);
 			
 		}
-		return $output_filename_head;
+		return $outputFilenameHead;
 	} elseif($type=="body"){
 
-		if(!is_file($output_filename_body)){
+		if(!is_file($outputFilenameBody)){
 			
 			$UUID = file_get_contents("https://api.mojang.com/users/profiles/minecraft/$mcUser");
 			$UUIDdata = json_decode($UUID);
@@ -215,21 +215,21 @@ function checkMCPic($mcUser,$type){
 			$result = curl_exec($ch);
 			curl_close($ch);
 
-			$fp = fopen($output_filename_body, 'w');
+			$fp = fopen($outputFilenameBody, 'w');
 			fwrite($fp, $result);
 			fclose($fp);
 			
 		}
-		return $output_filename_body;
+		return $outputFilenameBody;
 			
 		}
 		
 
 	}
 
-	function convert_time($datetime,$short=false) {
+	function convertTime($dateTime,$short=false) {
 		$now = new DateTime;
-		$ago = new DateTime($datetime);
+		$ago = new DateTime($dateTime);
 		$diff = $now->diff($ago);
 		$diff->w = floor($diff->d / 7);
 		$diff->d -= $diff->w * 7;

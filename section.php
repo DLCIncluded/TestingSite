@@ -8,10 +8,10 @@ $list="";
 		$result = $connection->query($sql);
 		if($result->num_rows == 1){
 			while($row=$result->fetch_assoc()){
-				$section_title = $row['title'];
+				$sectionTitle = $row['title'];
 			}
 		}else{
-			$section_title = "Post not Found";
+			$sectionTitle = "Post not Found";
 			$list = "That section does not exist. Please go back and try again.";
 		}
 		
@@ -20,10 +20,10 @@ $list="";
 		if($result->num_rows >= 1){
 			while($row=$result->fetch_assoc()){
 				$id = $row['id'];
-				$thread_title = $row['thread_title'];
-				$post_author = $row['post_author'];
-				$date_time = $row['date_time'];
-				$date_time = convert_time($date_time);
+				$threadTitle = $row['thread_title'];
+				$postAuthor = $row['post_author'];
+				$dateTime = $row['date_time'];
+				$dateTime = convertTime($dateTime);
 				$status = $row['closed'];
 				if($status == "0"){
 					$status = "Open";
@@ -32,8 +32,8 @@ $list="";
 				}
 				$list .= "
 				<div id='posts'>
-					<h3><a href='view_thread.php?id=$id'>$thread_title</a></h3>
-					<p>Started by: $post_author&nbsp;&nbsp;$date_time&nbsp;&nbsp;Status: $status
+					<h3><a href='viewThread.php?id=$id'>$threadTitle</a></h3>
+					<p>Started by: $postAuthor&nbsp;&nbsp;$dateTime&nbsp;&nbsp;Status: $status
 				</div>
 				";
 			}
@@ -47,14 +47,14 @@ $list="";
 
 	
 	?>
-	<h1><?PHP echo $section_title;?></h1>
+	<h1><?PHP echo $sectionTitle;?></h1>
 	<?PHP 
-	if($section_title != "Post not Found"){
+	if($sectionTitle != "Post not Found"){
 	?>
 
-		<a href="new_post.php?sid=<?PHP echo $sid; ?>&section_title=<?PHP echo $section_title; ?>" id="createTopic" name="createTopic">Create New Post</a><br><br>
+		<a href="newPost.php?sid=<?PHP echo $sid; ?>&sectionTitle=<?PHP echo $sectionTitle; ?>" id="createTopic" name="createTopic">Create New Post</a><br><br>
 
-	<div id="posts-container">
+	<div id="postsContainer">
 	<?PHP
 		echo $list;
 	?>

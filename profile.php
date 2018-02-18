@@ -1,5 +1,4 @@
 <?PHP 
-
 ini_set('display_errors', '1');
 include_once("includes/top.php");
 ?>
@@ -15,24 +14,24 @@ include_once("includes/top.php");
 						$result=$connection->query($sql);
 						if($result->num_rows == 1){
 							while($row = $result->fetch_assoc()){
-								$profile_user = $row['username'];
-								$profile_bio = $row['bio'];
-								$profile_MCuser = $row['mcUsername'];
+								$profileUser = $row['username'];
+								$profileBio = $row['bio'];
+								$profileMCuser = $row['mcUsername'];
 								
 					?>
-								<h1><?PHP echo $profile_user; ?>'s Profile</h1>
-								<div id="profile-pic">
-								<img src="<?PHP echo checkMCPic($profile_MCuser,"body"); ?>" />
-								MC Username: <?PHP echo $profile_MCuser; ?><br>
+								<h1><?PHP echo $profileUser; ?>'s Profile</h1>
+								<div id="profilePic">
+								<img src="<?PHP echo checkMCPic($profileMCuser,"body"); ?>" />
+								MC Username: <?PHP echo $profileMCuser; ?><br>
 								</div>
 								<!--
 								<div id="profile-info">
-									MC Username:<?PHP echo $profile_MCuser; ?><br>
+									MC Username:<?PHP echo $profileMCuser; ?><br>
 								</div>
 								-->
 								<br>
 								<span id="clear"></span>
-								<?PHP echo $profile_bio; ?>
+								<?PHP echo $profileBio; ?>
 								
 
 								<br>
@@ -41,7 +40,7 @@ include_once("includes/top.php");
 								if($username == $_GET['username']){
 									
 									?>
-									<a href='editprofile.php'>Edit Your Profile</a> <br><br>
+									<a href='editProfile.php'>Edit Your Profile</a> <br><br>
 									
 									<?PHP
 									$sql1="SELECT * FROM Whitelist WHERE mcUsername='".$mcUsername."'";

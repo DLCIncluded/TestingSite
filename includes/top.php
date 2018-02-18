@@ -2,7 +2,9 @@
 session_start();
 include_once("includes/dbConn.php");
 include_once("includes/accountFunctions.php");
-checklogin();
+include_once("includes/mailFunctions.php");
+
+checkLogin();
 ?>
 
 <html>
@@ -30,13 +32,13 @@ checklogin();
 
 <body>
 
-<div class="chat-wrap">
-	<div class="chat-container">
-		<div id="chat-pullout" class="chat-pullout">
-			<div data-simplebar id="chat-container">
+<div class="chatWrap">
+	<div class="chatContainer">
+		<div id="chatPullout" class="chatPullout">
+			<div data-simplebar id="chatContainer">
 			
 			</div>
-			<div id="msg-box">
+			<div id="msgBox">
 				<?PHP
 				if(isset($username)){
 				?>
@@ -47,7 +49,7 @@ checklogin();
 				</form>
 				<?PHP
 				}else{
-					echo "<a class='login-button'>Login</a> to send chat messages.";
+					echo "<a class='loginButton'>Login</a> to send chat messages.";
 				}
 				?>		
 			</div>
@@ -55,38 +57,39 @@ checklogin();
 	</div>
 </div>
 
-<button id="chatbtn">Chat</button>
+<button id="chatBtn">Chat</button>
 
 	<?PHP
 	if (!isset($username)) { //if not logged in give the login form &&|| reg form
 	?>
-		<!-- login-form-dropdown -->
-		<div class="login-form-wrap">
-			<div class="login-form-container">
-				<div id="login-form-dropdown" class="login-form-dropdown">
+		<!-- loginFormDropdown -->
+		<div class="loginFormWrap">
+			<div class="loginFormContainer">
+				<div id="loginFormDropdown" class="loginFormDropdown">
 					<?PHP
 						include_once("includes/login.php");
 					?>
 				</div>
 			</div>
 		</div>
-
-		<div class="register-form-wrap">
-			<div class="register-form-container">
-				<div id="register-form-dropdown" class="register-form-dropdown">
+		
+		<!-- registerFormDropdown -->
+		<div class="registerFormWrap">
+			<div class="registerFormContainer">
+				<div id="registerFormDropdown" class="registerFormDropdown">
 					<?PHP
 						include_once("includes/register.php");
 					?>
 				</div>
 			</div>
 		</div>
-		<!-- register-form-dropdown -->
+		
 	<?PHP
 	} else{
 	?>
-		<div class="profile-form-wrap">
-			<div class="profile-form-container">
-				<div id="profile-form-dropdown" class="profile-form-dropdown">
+		<div class="profileFormWrap">
+			<div class="profileFormContainer">
+				<div id="profileFormDropdown" class="profileFormDropdown">
 					<?PHP include_once('includes/miniProfile.php'); ?>
 				</div>
 			</div>
@@ -104,20 +107,20 @@ checklogin();
 		<?PHP
 		if (!isset($_SESSION['username']) && !isset($_POST['username'])) { //if not logged in give the login form &&|| reg form
 		?>
-		<button id="login-button" class="login-button"> Login </button>
+		<button id="loginButton" class="loginButton"> Login </button>
 		<?PHP
 		} else {
 		?>
-			<button id="profile-button" class="profile-button"> Profile </button>
+			<button id="profileButton" class="profileButton"> Profile </button>
 		<?PHP
 		}
 		?>
-	<!-- login-button -->
+	<!-- loginButton -->
 	<!-- <span id="clear"></span> -->
 	</header><!-- header -->
 <span id="clear"></span>
 
-	<aside id="sidebar-left">
+	<aside id="sidebarLeft">
 	
 		<ul>
 			<!--<li><a href="#">News</a></li>
@@ -136,7 +139,7 @@ checklogin();
 			}
 			
 			?>
-			<li><a href="forum_sections.php">Forums</a></li>
+			<li><a href="forumSections.php">Forums</a></li>
 			<?PHP
 				$sql = "SELECT * FROM Pages ORDER BY name";
 				$result = $connection->query($sql);
@@ -147,10 +150,12 @@ checklogin();
 						$name=$row['name'];
 						if($name == "home"){
 						}else{
+							
+					
 					
 					?>
 					
-							<li><a href="<?PHP echo $name; ?>.php"><?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></a></li>
+							<li><a href="<?PHP echo $row['fileName']; ?>.php"><?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></a></li>
 
 					<?PHP
 						}
@@ -160,6 +165,6 @@ checklogin();
 			
 		</ul>
 	
-	</aside><!-- sidebar-left -->
-	<content id="main-content">
+	</aside><!-- sidebarLeft -->
+	<content id="mainContent">
 	

@@ -17,8 +17,8 @@ if ($response['success']) {
 				//echo "<div id='message'>".$value["name"]." - ".$value["text"]."</div>";
 				?>
 				<div id="message">
-					<span id="chat-time"><?PHP echo convert_time("@".$time, true); ?></span><br>
-					<span id="chat-msg"><?PHP echo $value["text"]; ?></span>
+					<span id="chatTime"><?PHP echo convertTime("@".$time, true); ?></span><br>
+					<span id="chatMsg"><?PHP echo $value["text"]; ?></span>
 					
 				</div>
 				<?PHP
@@ -26,8 +26,8 @@ if ($response['success']) {
 				//echo "<div id='message'>".$value["name"]." - ".$value["text"]."</div>";
 				?>
 				<div id="message">
-					<span id="chat-time"><?PHP echo convert_time("@".$time, true); ?></span><br>
-					<span id="chat-msg"><?PHP echo $value["text"]; ?></span>
+					<span id="chatTime"><?PHP echo convertTime("@".$time, true); ?></span><br>
+					<span id="chatMsg"><?PHP echo $value["text"]; ?></span>
 					
 				</div>
 				<?PHP
@@ -35,8 +35,8 @@ if ($response['success']) {
 				//echo "<div id='message'>".$value["name"]." - ".$value["text"]."</div>";
 				?>
 				<div id="message">
-					<span id="chat-time"><?PHP echo convert_time("@".$time, true); ?></span><br>
-					<span id="chat-msg"><?PHP echo $value["text"]; ?></span>
+					<span id="chatTime"><?PHP echo convertTime("@".$time, true); ?></span><br>
+					<span id="chatMsg"><?PHP echo $value["text"]; ?></span>
 					
 				</div>
 				<?PHP
@@ -46,8 +46,8 @@ if ($response['success']) {
 		}elseif (strpos($value["text"], 'connected') !== false) {
 			?>
 				<div id="message">
-					<span id="chat-time"><?PHP echo convert_time("@".$time, true); ?></span><br>
-					<span id="chat-msg"><?PHP echo $value["text"]; ?></span>
+					<span id="chatTime"><?PHP echo convertTime("@".$time, true); ?></span><br>
+					<span id="chatMsg"><?PHP echo $value["text"]; ?></span>
 					
 				</div>
 				<?PHP
@@ -55,13 +55,13 @@ if ($response['success']) {
 			
 			?>
 			<div id="message">
-				<span id="chat-name"><?PHP echo $value["name"]; ?></span> - <span id="chat-time"><?PHP echo convert_time("@".$time, true); ?></span><br>
-				<span id="chat-msg"><?PHP echo $value["text"]; ?></span>
+				<span id="chatName"><?PHP echo $value["name"]; ?></span> - <span id="chatTime"><?PHP echo convertTime("@".$time, true); ?></span><br>
+				<span id="chatMsg"><?PHP echo $value["text"]; ?></span>
 				
 			</div>
 			<?PHP
 			
-			//echo "<div id='message'>".$value["name"]." - ".$value["text"]." - ".convert_time("@".$time)."</div>";
+			//echo "<div id='message'>".$value["name"]." - ".$value["text"]." - ".convertTime("@".$time)."</div>";
 			//echo $value["name"];
 			//echo " ";
 			//echo $value["text"];

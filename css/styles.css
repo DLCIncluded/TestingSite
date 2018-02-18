@@ -24,7 +24,7 @@ header h1 {
 	font-family: 'Permanent Marker', cursive;
 }
 
-#sidebar-left > ul, #sidebar-left > li, #sidebar-right > ul, #sidebar-right > li {
+#sidebarLeft > ul, #sidebarLeft > li, #sidebarRight > ul, #sidebarRight > li {
 	list-style:none;
 	padding-left:0px;
 	padding-top:5px;
@@ -39,7 +39,7 @@ header h1 {
 	padding-left:25px!important;
 }
 
-.login-button {
+.loginButton {
 cursor: pointer;
 }
 
@@ -51,24 +51,24 @@ cursor: pointer;
 	margin-bottom: -81px;*/
 }
 
-#sidebar-left{
+#sidebarLeft{
 	width: 20%;
 	float:left;
 }
 
-#main-content{
+#mainContent{
 	width: 50%;
 	float:left;
 	line-height: 20px;
 }
 
-#main-content h1 {
+#mainContent h1 {
 	font-family: 'Permanent Marker', cursive;
 	margin-top:0px;
 	margin-bottom:20px;
 }
 
-#sidebar-right{
+#sidebarRight{
 	height:auto;
 	width: 20%;
 	float:right;
@@ -103,7 +103,7 @@ footer {
 
 
 
-#login-button  {
+#loginButton  {
 	float:right;
     background-color: #9D9D9D;
     color: white;
@@ -118,7 +118,7 @@ footer {
 	border-radius:0px 0px 5px 5px
 }
 
-#login-button:hover {
+#loginButton:hover {
     background-color: #6f6f6f;
     color: white;
     padding: 10px 20px;
@@ -133,27 +133,27 @@ footer {
 	clear: both;
 }
 
-.login-form-wrap {
+.loginFormWrap {
 	width: 100%;
   	background-color: #1e1e1e;
   	display: none;
   	border-bottom: 1px solid #5bc1ff;
 }
 
-.login-form-container {
+.loginFormContainer {
 	width: 800px;
 	margin: 0 auto;
 	line-height: 80px;
 	overflow: hidden;
 }
 
-#login-form > p{
+#loginForm > p{
 	line-height: 10px;
 	size:10pt;
 	position:relative;
 }
 
-#login-form-dropdown {
+#loginFormDropdown {
 	height:100px;
 	width:100%;
 	margin: 0 auto;
@@ -162,7 +162,7 @@ footer {
 	z-index: 88;
 }
 
-#login-form input {
+#loginForm input {
 	height: 40px;
 	line-height: 40px;
 	border: none;
@@ -173,7 +173,7 @@ footer {
 	color:#9d9d9d;
 }
 
-#login-submit{
+#loginSubmit{
 	height: 40px;
 	width:60px;
 	background-color:transparent;
@@ -198,21 +198,21 @@ footer {
    color: #9d9d9d;
 }
 
-.register-form-wrap {
+.registerFormWrap {
 	width: 100%;
   	background-color: #1e1e1e;
   	display: none;
   	border-bottom: 1px solid #5bc1ff;
 }
 
-.register-form-container {
+.registerFormContainer {
 	width: 800px;
 	margin: 0 auto;
 	line-height: 80px;
 	overflow: hidden;
 }
 
-#register-form-dropdown {
+#registerFormDropdown {
 	height:500px;
 	width:100%;
 	margin: 0 auto;
@@ -221,7 +221,7 @@ footer {
 	z-index: 88;
 }
 
-#register-form input {
+#registerForm input {
 	height: 40px;
 	line-height: 40px;
 	border: none;
@@ -233,7 +233,7 @@ footer {
 	
 }
 
-#register-form select {
+#registerForm select {
 	height: 40px;
 	line-height: 40px;
 	border: none;
@@ -244,7 +244,7 @@ footer {
 	color:#9d9d9d;
 }
 
-#register-form select option {
+#registerForm select option {
 	height: 40px;
 	line-height: 40px;
 	border: none;
@@ -256,7 +256,7 @@ footer {
 }
 
 
-#register-submit{
+#registerSubmit{
 	height: 40px;
 	width:60px;
 	background-color:transparent;
@@ -268,27 +268,27 @@ footer {
 	cursor:pointer;
 }
 
-.profile-form-wrap {
+.profileFormWrap {
 	width: 100%;
   	background-color: #1e1e1e;
   	display: none;
   	border-bottom: 1px solid #5bc1ff;
 }
 
-.profile-form-container {
+.profileFormContainer {
 	width: 800px;
 	margin: 0 auto;
 	line-height: 40px;
 	overflow: hidden;
 }
 
-#profile-form > p{
+#profileForm > p{
 	line-height: 10px;
 	size:10pt;
 	position:relative;
 }
 
-#profile-form-dropdown {
+#profileFormDropdown {
 	height:auto;
 	width:100%;
 	margin: 0 auto;
@@ -297,7 +297,7 @@ footer {
 	z-index: 88;
 }
 
-#profile-button  {
+#profileButton  {
 	float:right;
     background-color: #9D9D9D;
     color: white;
@@ -307,7 +307,7 @@ footer {
     z-index: 99999;
 }
 
-#profile-button:hover {
+#profileButton:hover {
     background-color: #6f6f6f;
     color: white;
     padding: 10px 20px;
@@ -315,39 +315,53 @@ footer {
     display: inline-block;
 	cursor:pointer;
 }
-.profile-button {
+.profileButton {
 	border-bottom: 1px solid #5bc1ff;
 	border-left: 1px solid #5bc1ff;
 	border-right: 1px solid #5bc1ff;
 	border-top:none;
-	 border-radius:0px 0px 5px 5px
+	border-radius:0px 0px 5px 5px
 }
 
 table {
 	border-collapse: collapse;
 }
 
-#users-table {
-	
+#usersTable input{
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	padding: 0 10px;
+	margin-right: 5px;
+	color:#9d9d9d;
 }
 
-#users-row {
+#usersTable textarea {
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	color:#9d9d9d;
+}
+
+#usersRow {
 	border-bottom: 1px solid #000;
 }
 
-#users-table tr {
+#usersTable tr {
 	background-color: rgba(50, 50, 50,0.5);
 }
 
-#users-table  tr:nth-child(1) {
+#usersTable  tr:nth-child(1) {
 	background-color:#21213d;
 }
 
-#users-table  tr:nth-child(even) {
+#usersTable  tr:nth-child(even) {
 	background-color: rgba(100, 100, 100,0.5);
 }
 
-#users-cell {
+#usersCell {
 	border-bottom: 1px solid #000;
 	padding-right:10px;
 	padding-top:5px;
@@ -355,32 +369,32 @@ table {
 	margin:0 0;
 }
 
-#profile-pic {
+#profilePic {
 	float:left;
 	
 }
-#profile-pic img {
+#profilePic img {
 	vertical-align:middle;
 	padding-right:20px;
 }
 
-#sidebar-right img{
+#sidebarRight img{
 	vertical-align:middle;
 }
 
-#profile-info {
+#profileInfo {
 	float:left;
 }
 
-#replies{
+#replies {
 	margin-left:25px;
 }
 
-#response_bottom{
+#responseBottom {
 	margin-bottom:15px;
 }
 
-#posts-container {
+#postsContainer {
 	padding-top:20px;
 	border-top:1px solid white;
 }
@@ -416,10 +430,10 @@ table {
 	color: white;
 }
 
-#replies > #response_bottom > p{
+#replies > #responseBottom > p{
 	text-indent:25px;
 }
-#post_title {
+#postTitle {
 	height: 40px;
 	line-height: 40px;
 	border: none;
@@ -444,7 +458,7 @@ pre{
 	border: 1px solid #777;
 	white-space: pre-wrap;
 }
-.chat-wrap {
+.chatWrap {
 	width: 25%;
 	position: absolute;
 	top: 0;
@@ -458,7 +472,7 @@ pre{
 	border-radius:0px 0px 0px 5px
 	
 }
-#chatbtn {
+#chatBtn {
 	position: absolute;
 	top: 25px;
 	right: -16px;
@@ -474,14 +488,14 @@ pre{
 	border-radius:5px 5px 0px 0px
 }
 
-#chatbtn:hover {
+#chatBtn:hover {
     background-color: #6f6f6f;
 	cursor:pointer;
 }
 	
 }
 
-#chat-box {
+#chatBox {
 	background: rgba(157, 157, 157, 0.5);
 	width: 100%;
 	padding-left:10px;
@@ -489,15 +503,15 @@ pre{
 	padding-bottom:10px;
 	border-radius:5px 5px;
 }
-#chat-container {
+#chatContainer {
 	height:500px;
 	width: 100%;
 	overflow:hidden;
 }
-.simplebar-scroll-content {
+.simplebarScrollContent {
 	padding-right: 18px !important;
 }
-.simplebar-content{
+.simplebarContent{
 	/*padding-bottom:0 !important;*/
 	margin-right:0 !important;
 }
@@ -507,18 +521,72 @@ pre{
 	margin-bottom:7px;
 	padding-bottom:7px;
 }
-#msg-box {
+#msgBox {
 	padding-top: 5px;
 }
 
-#chat-name {
+#msgBox input {
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	padding: 0 10px;
+	margin-right: 5px;
+	color:#9d9d9d;
+}
+
+#chatName {
 	font-size:12pt;
 }
 
-#chat-msg {
+#chatMsg {
 	font-size:12pt;
 }
 
-#chat-time {
+#chatTime {
 	font-size:10pt;
+}
+
+#contactUsForm input {
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	padding: 0 10px;
+	margin-right: 5px;
+	color:#9d9d9d;
+	
+}
+
+#contactUsForm textarea {
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	color:#9d9d9d;
+}
+
+#newPost input {
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	padding: 0 10px;
+	margin-right: 5px;
+	color:#9d9d9d;
+	
+}
+
+#reset input {
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-bottom: 2px solid #5bc1ff;
+	background: transparent;
+	padding: 0 10px;
+	margin-right: 5px;
+	color:#9d9d9d;
+	
 }

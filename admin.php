@@ -51,7 +51,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		//*******************************************
 		
 		
-	if(isset($_POST['submitbtn'])){ //process the updates on users account
+	if(isset($_POST['submitBtn'])){ //process the updates on users account
 		$id = $_POST['id'];
 		$fName=$_POST['fName'];
 		$lName=$_POST['lName'];
@@ -86,7 +86,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 	}
 	
 
-	if(isset($_POST['mcsubmit'])){ //add user to Multicraft via API
+	if(isset($_POST['mcSubmit'])){ //add user to Multicraft via API
 		echo "Creating multicraft account for ".$_POST['username'];
 		$sql1 = "SELECT * FROM Users WHERE username='".$_POST['username']."' AND siteLevel=5";
 		
@@ -117,19 +117,22 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		}
 	}
 	
-	if(isset($_POST['new-page-submit'])){
+	if(isset($_POST['newPageSubmit'])){
 		$name=$_POST['pageName'];
-		$name=str_replace(" ","_",$name); 
-		$name=strtolower($name);  
+		
 		$page=$_POST['pageData'];
+		
+		$fileName=ucwords($name," ");
+		$fileName=str_replace(" ","",$fileName);
+		$fileName=lcfirst($fileName);
 		
 		$page=str_replace("'","\'",$page); 
 		$page=str_replace('"','\"',$page); 
-		$sql = "INSERT INTO Pages VALUES (NULL,'".$name."','".$page."')"; 
+		$sql = "INSERT INTO Pages VALUES (NULL,'".$name."','".$fileName."','".$page."')"; 
 		if($connection->query($sql) === TRUE){
-			echo "Page created at <a href='".$name.".php'>".$name."</a>";
+			echo "Page created at <a href='".$fileName.".php'>".$name."</a>";
 			
-			$file = $name.'.php';
+			$file = $fileName.'.php';
 			if(!is_file($file)){
 				$contents = 'This is a test!';
 				file_put_contents($file, "
@@ -138,17 +141,14 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 				
 					\$page = basename(__FILE__, '.php'); 
 	
-					\$sql = \"SELECT * FROM Pages WHERE name='\".\$page.\"'\";
+					\$sql = \"SELECT * FROM Pages WHERE fileName='\".\$page.\"'\";
 					
 					\$result = \$connection->query(\$sql); 
 					
 					if(\$result->num_rows > 0){
 						while(\$row = \$result->fetch_assoc()){
 							
-							\$name=str_replace('_',' ',\$row['name']); 
-							\$name=strtolower(\$name);
-							\$name=ucfirst(\$name); 
-							echo '<title>'.\$name.'</title>';
+							echo '<title>'.\$row['name'].'</title>';
 							echo \$row['pageData'];
 						}
 					} else {
@@ -157,8 +157,6 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 					
 				include_once('includes/bottom.php'); 
 				?>
-				
-				
 				");
 			}
 			
@@ -167,7 +165,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		}
 	}
 	
-	if(isset($_POST['edit-page-submit'])){
+	if(isset($_POST['editPageSubmit'])){
 		$name=$_POST['pageName'];
 		$page=$_POST['pageData'];
 		$page=str_replace("'","\'",$page); 
@@ -180,19 +178,32 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		}
 	}
 	
-	if(isset($_POST['delete-page-submit'])){
+	if(isset($_POST['deletePageSubmit'])){
 		$name=$_POST['pageName'];
-		$file = $name.'.php';
-		$sql = "DELETE FROM Pages WHERE name='".$name."'"; 
-		if($connection->query($sql) === TRUE){
-			if(unlink($file)){
-			echo "Successfully deleted ".$name." <a href='admin.php'>Reload page</a>";
-			}else{
-				echo "Failed to delete the file.. please let the admin know that ".$file." was not deleted successfully...";
+		
+		$sql = "SELECT * FROM Pages WHERE name='".$name."'";
+		
+		$result = $connection->query($sql);
+		if($result->num_rows == 1){
+			while($row = $result->fetch_assoc()){
+				$fileName = $row['fileName'];
 			}
-		}else {
-			echo $sql . "<br>" . $connection->error;
+		
+			$fileName = $fileName.'.php';
+			$sql = "DELETE FROM Pages WHERE name='".$name."'"; 
+			if($connection->query($sql) === TRUE){
+				if(unlink($fileName)){
+					echo "Successfully deleted ".$name." <a href='admin.php'>Reload page</a>";
+				}else{
+					echo "Failed to delete the file.. please let the admin know that ".$fileName." was not deleted successfully...";
+				}
+			}else {
+				echo $sql . "<br>" . $connection->error;
+			}
+		}else{
+			echo "Page not found";
 		}
+		
 	}
 	
 
@@ -211,13 +222,13 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()){
 				$data .= "
-				<tr id='users-row'>
-					<td id='users-cell'>".$row['id']."</td>
-					<td id='users-cell'>".$row['username']."</td>
-					<td id='users-cell'>".$row['active']."</td>
-					<td id='users-cell'>".$row['locked']."</td>
-					<td id='users-cell'>".$row['banned']."</td>
-					<td id='users-cell'><a href='admin.php?edit=true&username=".$row['username']."'>Edit</a></td>
+				<tr id='usersRow'>
+					<td id='usersCell'>".$row['id']."</td>
+					<td id='usersCell'>".$row['username']."</td>
+					<td id='usersCell'>".$row['active']."</td>
+					<td id='usersCell'>".$row['locked']."</td>
+					<td id='usersCell'>".$row['banned']."</td>
+					<td id='usersCell'><a href='admin.php?edit=true&username=".$row['username']."'>Edit</a></td>
 				</tr>
 				
 				";
@@ -225,23 +236,23 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		}
 		?>
 		
-			<div id='users-table'>
+			<div id='usersTable'>
 				<table>
 					<tbody>
-						<tr id='users-row'>
-							<td id='users-cell'>ID</td>
-							<td id='users-cell'>Username</td>
-							<td id='users-cell'>Active</td>
-							<td id='users-cell'>Locked</td>
-							<td id='users-cell'>Banned</td>
-							<td id='users-cell'>Edit</td>
+						<tr id='usersRow'>
+							<td id='usersCell'>ID</td>
+							<td id='usersCell'>Username</td>
+							<td id='usersCell'>Active</td>
+							<td id='usersCell'>Locked</td>
+							<td id='usersCell'>Banned</td>
+							<td id='usersCell'>Edit</td>
 						</tr>
 							<?PHP echo $data ?>
 					<tbody>
 				</table>
 			</div>
 			
-			<div id='functions-table'>
+			<div id='functionsTable'>
 				<ul>
 					<li><a href="admin.php?edit=true&page=new">New Page</a></li>
 					<li><a href="admin.php?edit=true&page=edit">Edit a Page</a></li>
@@ -257,6 +268,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		//************PAGE CREATION******************
 		//*******************************************
 		//*******************************************
+		
 		?>
 		
 			<h1>New Page</h1>
@@ -264,7 +276,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 			<form method="POST" action="admin.php">
 				<input type="text" name="pageName" placeholder="Page Name" />Spaces are okay, it will change to an underscore on the backend automagically<br>
                 <textarea placeholder="Page Data" cols=50 rows=15 name="pageData"></textarea><br>
-                <button type="submit" name="new-page-submit" value="new-page-submit">Submit</button>
+                <button type="submit" name="newPageSubmit" value="newPageSubmit">Submit</button>
 			</form>
 			
 		
@@ -314,7 +326,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 					<input type="text" name="" value="<?PHP echo $name; ?>" disabled/><br>
 					<input type="hidden" name="pageName" value="<?PHP echo $name; ?>"/>
 					<textarea placeholder="Page Data" cols=50 rows=15 name="pageData"><?PHP echo $pageData; ?></textarea><br>
-					<button type="submit" name="edit-page-submit" value="edit-page-submit">Submit</button>
+					<button type="submit" name="editPageSubmit" value="editPageSubmit">Submit</button>
 				</form>
 				
 				<br />
@@ -366,51 +378,51 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 				?>
 				
 				
-				<div id='users-table'>
+				<div id='usersTable'>
 					<form action='admin.php' method='POST'>
 					<table>
 						<tbody>
-							<tr id='users-row'>
-								<td id='users-cell'>Field</td>
+							<tr id='usersRow'>
+								<td id='usersCell'>Field</td>
 								
-								<td id='users-cell'>Value</td>
+								<td id='usersCell'>Value</td>
 							</tr>
-							<tr id='users-row'>
-								<td id='users-cell'>ID</td>
+							<tr id='usersRow'>
+								<td id='usersCell'>ID</td>
 								<input type='hidden' value='<?PHP echo $row['id']; ?>' name='id'/>
-								<td id='users-cell'><input type='text' disabled size='1' name='id1' value='<?PHP echo $row['id']; ?>'/></td>
+								<td id='usersCell'><input type='text' disabled size='1' name='id1' value='<?PHP echo $row['id']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>							
-								<td id='users-cell'>First Name</td>
-								<td id='users-cell'><input type='text' size='7' name='fName' value='<?PHP echo $row['fName']; ?>'/></td>
+							<tr id='usersRow'>							
+								<td id='usersCell'>First Name</td>
+								<td id='usersCell'><input type='text' size='7' name='fName' value='<?PHP echo $row['fName']; ?>'/></td>
 							</tr>	
-							<tr id='users-row'>	
-								<td id='users-cell'>Last Name</td>
-								<td id='users-cell'><input type='text' size='7' name='lName' value='<?PHP echo $row['lName']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Last Name</td>
+								<td id='usersCell'><input type='text' size='7' name='lName' value='<?PHP echo $row['lName']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Username</td>
-								<td id='users-cell'><input type='text' size='10' name='username' value='<?PHP echo $row['username']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Username</td>
+								<td id='usersCell'><input type='text' size='10' name='username' value='<?PHP echo $row['username']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Email</td>
-								<td id='users-cell'><input type='text' size='20' name='email' value='<?PHP echo $row['email']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Email</td>
+								<td id='usersCell'><input type='text' size='20' name='email' value='<?PHP echo $row['email']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>mcUsername</td>
-								<td id='users-cell'><input type='text' size='20' name='mcUsername' value='<?PHP echo $row['mcUsername']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>mcUsername</td>
+								<td id='usersCell'><input type='text' size='20' name='mcUsername' value='<?PHP echo $row['mcUsername']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Birthday</td>
-								<td id='users-cell'><input type='date' size='10' name='birthday' value='<?PHP echo $row['birthday']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Birthday</td>
+								<td id='usersCell'><input type='date' size='10' name='birthday' value='<?PHP echo $row['birthday']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Bio</td>
-								<td id='users-cell'><textarea rows='1' cols='20' name='bio'><?PHP echo $row['bio'] ?></textarea></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Bio</td>
+								<td id='usersCell'><textarea rows='1' cols='20' name='bio'><?PHP echo $row['bio'] ?></textarea></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>AuthQ</td>
-								<td id='users-cell'>
+							<tr id='usersRow'>	
+								<td id='usersCell'>AuthQ</td>
+								<td id='usersCell'>
 								<select name='authQ' id='authQ'>
 									<option value='q1' <?PHP echo $q1; ?>>What is your favorite Minecraft mob?</option>
 									<option value='q2' <?PHP echo $q2; ?>>Who was your childhood hero?</option>
@@ -420,40 +432,41 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 								</select>
 								</td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>AuthA</td>
-								<td id='users-cell'><input type='text' size='10' name='authA' value='<?PHP echo $row['authA']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>AuthA</td>
+								<td id='usersCell'><input type='text' size='10' name='authA' value='<?PHP echo $row['authA']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>
-								<td id='users-cell'>Donator</td>
-								<td id='users-cell'><input type='text' size='1' name='donator' value='<?PHP echo $row['donator']; ?>'/> Values:0,1</td>
+							<tr id='usersRow'>
+								<td id='usersCell'>Donator</td>
+								<td id='usersCell'><input type='text' size='1' name='donator' value='<?PHP echo $row['donator']; ?>'/> Values:0,1</td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Site Level</td>
-								<td id='users-cell'><input type='text' size='1' name='siteLevel' value='<?PHP echo $row['siteLevel']; ?>'/>Values:0-5</td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Site Level</td>
+								<td id='usersCell'><input type='text' size='1' name='siteLevel' value='<?PHP echo $row['siteLevel']; ?>'/>Values:0-5</td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Active</td>
-								<td id='users-cell'><input type='text' size='1' name='active' value='<?PHP echo $row['active']; ?>'/>Values:0,1</td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Active</td>
+								<td id='usersCell'><input type='text' size='1' name='active' value='<?PHP echo $row['active']; ?>'/>Values:0,1</td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Banned</td>
-								<td id='users-cell'><input type='text' size='1' name='banned' value='<?PHP echo $row['banned']; ?>'/>Values:0,1</td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Banned</td>
+								<td id='usersCell'><input type='text' size='1' name='banned' value='<?PHP echo $row['banned']; ?>'/>Values:0,1</td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Locked</td>
-								<td id='users-cell'><input type='text' size='1' name='locked' value='<?PHP echo $row['locked']; ?>'/>Values:0,1</td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Locked</td>
+								<td id='usersCell'><input type='text' size='1' name='locked' value='<?PHP echo $row['locked']; ?>'/>Values:0,1</td>
 							</tr>
 						<tbody>
 					</table>
 					<input type='submit' name='submitbtn' value='submitbtn' id='submitbtn'>
 					</form>
 					<!--
+					error with API calling twice when chat is on page & this really isn't needed so commenting out.
 					<form action='admin.php' method='POST'>
 						<input type='hidden' name='multicraft' value='true'/>
 						<input type='hidden' name='username' value='<?PHP echo $_GET['username']; ?>'/>
 						Create Multicraft Account:(ONLY for TRUSTED people.. gives access to multicraft as a user)
-						<input type='submit' name='mcsubmit' value='GO' id='submitbtn'>
+						<input type='submit' name='mcSubmit' value='GO' id='submitBtn'>
 					</form>
 					-->
 					<a href='admin.php?edit=true&pass=true&username=<?PHP echo $_GET['username']; ?>'>Change Users Password</a>
@@ -492,14 +505,14 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 	}elseif(($delete!="" || $delete=="true") && $name!=""){
 		?>
 		ARE YOU 110% sure you wish to delete <?PHP echo $name; ?>??<br>
-		If NOT, please click <a href='admin.php?edit=true&page=edit&name=<?PHP echo $_GET['name']; ?>'>here</a> to go back. (PS NOT IMPLEMENTED YET - JUST HERE FOR TESTING) 
+		If NOT, please click <a href='admin.php?edit=true&page=edit&name=<?PHP echo $_GET['name']; ?>'>here</a> to go back.
 		
 		<br><br>
 		
 		Click here to delete the page. This IS PERMINENT so please click carefully: <br><br>
 		<form method="POST" action="admin.php">
 			<input type="hidden" name="pageName" value="<?PHP echo $name; ?>"/>
-			<button type="submit" name="delete-page-submit" value="delete-page-submit">Delete <?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></button>
+			<button type="submit" name="deletePageSubmit" value="deletePageSubmit">Delete <?PHP $name=str_replace("_"," ",$name); $name=strtolower($name); echo ucfirst($name); ?></button>
 		</form>
 		<?PHP
 	}elseif(($delete!="" || $delete=="true") && $username!=""){
@@ -512,7 +525,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['siteLevel']) && $_SESSION['s
 		Click here to delete the account. This IS PERMINENT so please click carefully: 
 		<form method="POST" action="admin.php">
 			<input type="hidden" name="username" value="<?PHP echo $username; ?>" />
-			<input type="submit" name="delBtn" value="delBtn" id="delBtn" />
+			<input type="submit" name="delBtn" value="Delete User" id="delBtn" />
 		</form>
 		<?PHP
 	}elseif($username==""){ //if no user supplied in url 
