@@ -6,8 +6,8 @@ include_once("includes/top.php");
 <?PHP
 
 //form handling 
-if(isset($_POST['submitbtn'])){
-	if(isset($_POST['submitbtn'])){ //process the updates on users account
+if(isset($_POST['submitBtn'])){
+	if(isset($_POST['submitBtn'])){ //process the updates on users account
 		$fName=$_POST['fName'];
 		$lName=$_POST['lName'];
 		$email=$_POST['email'];	                  
@@ -48,42 +48,41 @@ if(isset($username)){
 
 				<h1>Edit Your Profile</h1>
 				
-				<div id='users-table'>
-					<form action='editprofile.php' method='POST'>
+				<div id='usersTable'>
+					<form action='editProfile.php' method='POST'>
 					<table>
 						<tbody>
-							<tr id='users-row'>
-								<td id='users-cell'>Field</td>
-								
-								<td id='users-cell'>Value</td>
+							<tr id='usersRow'>
+								<td id='usersCell'>Field</td>
+								<td id='usersCell'>Value</td>
 							</tr>
-							<tr id='users-row'>							
-								<td id='users-cell'>First Name</td>
-								<td id='users-cell'><input type='text' size='7' name='fName' value='<?PHP echo $row['fName']; ?>'/></td>
+							<tr id='usersRow'>							
+								<td id='usersCell'>First Name</td>
+								<td id='usersCell'><input type='text' name='fName' value='<?PHP echo $row['fName']; ?>'/></td>
 							</tr>	
-							<tr id='users-row'>	
-								<td id='users-cell'>Last Name</td>
-								<td id='users-cell'><input type='text' size='7' name='lName' value='<?PHP echo $row['lName']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Last Name</td>
+								<td id='usersCell'><input type='text' name='lName' value='<?PHP echo $row['lName']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Email</td>
-								<td id='users-cell'><input type='text' size='20' name='email' value='<?PHP echo $row['email']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Email</td>
+								<td id='usersCell'><input type='text' name='email' value='<?PHP echo $row['email']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>mcUsername</td>
-								<td id='users-cell'><input type='text' size='20' name='mcUsername' value='<?PHP echo $row['mcUsername']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>mcUsername</td>
+								<td id='usersCell'><input type='text' name='mcUsername' value='<?PHP echo $row['mcUsername']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Birthday</td>
-								<td id='users-cell'><input type='date' size='10' name='birthday' value='<?PHP echo  $row['birthday']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Birthday</td>
+								<td id='usersCell'><input type='date' name='birthday' value='<?PHP echo  $row['birthday']; ?>'/></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Biography</td>
-								<td id='users-cell'><textarea rows='7' cols='40' name='bio'><?PHP echo $row['bio'] ?></textarea></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Biography</td>
+								<td id='usersCell'><textarea rows='7' cols='40' name='bio'><?PHP echo $row['bio'] ?></textarea></td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Auth Question</td>
-								<td id='users-cell'>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Auth Question</td>
+								<td id='usersCell'>
 								<select name='authQ' id='authQ'>
 									<option value='q1' <?PHP echo $q1; ?>>What is your favorite Minecraft mob?</option>
 									<option value='q2' <?PHP echo $q2; ?>>Who was your childhood hero?</option>
@@ -93,14 +92,14 @@ if(isset($username)){
 								</select>
 								</td>
 							</tr>
-							<tr id='users-row'>	
-								<td id='users-cell'>Auth Answer</td>
-								<td id='users-cell'><input type='text' size='10' name='authA' value='<?PHP echo $row['authA']; ?>'/></td>
+							<tr id='usersRow'>	
+								<td id='usersCell'>Auth Answer</td>
+								<td id='usersCell'><input type='text' name='authA' value='<?PHP echo $row['authA']; ?>'/></td>
 							</tr>
 						<tbody>
 					</table>
 					<a href="resetPass.php">Reset Password</a><br><br>
-					<input type='submit' name='submitbtn' value='Submit Changes' id='submitbtn'>
+					<input type='submit' name='submitBtn' value='Submit Changes' id='submitBtn'>
 					</form>
 					
 			</div>
